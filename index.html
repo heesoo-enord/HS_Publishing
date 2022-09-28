@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>DroneOnion</title>
         <style>
-            .en-login-container {
+            .min-vh-100 {
                 height: 100%;
                 background-image: url(img_loginbg.jpg);
                 align-items: center !important;
@@ -15,7 +15,7 @@
                 display: flex !important;
             }
 
-            .en-login-box-container {
+            .container {
                 height: 600px;
                 width: 884px;
                 padding: 0;
@@ -24,7 +24,7 @@
                 box-sizing: border-box;
             }
 
-            .en-login-box-row-container {
+            .row {
                 width: 100%;
                 height: 100%;
                 justify-content: center !important;
@@ -38,7 +38,7 @@
                 box-sizing: border-box;
             }
 
-            .en-login-box-input-container {
+            .col-6 {
                 align-items: center;
                 background-color: #fff !important;
                 border-radius: 14px 0 0 14px;
@@ -57,16 +57,70 @@
                 margin-bottom: 1.5rem !important;
                 vertical-align: middle;
             }
+
+            .en-login-box-title-1 {
+                align-items: center;
+                color: black;
+                display: flex;
+                font-size: 20px;
+                font-weight: bold;
+                line-height: 27px;
+                text-align: center !important;
+            }
+
+            .en-login-box-title-2 {
+                font-size: 36px;
+                letter-spacing: -0.03em;
+                line-height: 54px;
+                text-align: left;
+                color: #ec994b;
+                font-weight: bold;
+            }
+
+            .en-login-box-title-3 {
+                color: black;
+                font-size: 36px;
+                letter-spacing: -0.03em;
+                line-height: 54px;
+                text-align: left;
+            }
+
+            .en-login-box-image-container {
+                background-image: url(img_loginmain.png);
+                border-radius: 0 14px 14px 0;
+                flex: 0 0 auto;
+                width: 50%;
+                margin-top: var(--cui-gutter-y);
+                max-width: 100%;
+                padding-left: calc(var(--cui-gutter-x) * 0.5);
+                padding-right: calc(var(--cui-gutter-x) * 0.5);
+            }
         </style>
     </head>
     <body>
         <div id="DroneOnion">
-            <div class="en-login-container">
+            <div class="min-vh-100 en-login-container">
                 <div class="container en-login-box-container">
                     <div class="row en-login-box-row-container">
                         <div class="col-6 en-login-box-input-container">
-                            <div class="en-logo-box-logo"><img src="onion.png" />
-                            <div class="en-login-box-title-1">팜맵 기반 노지 양파</div>
+                            <img class="mb-4 en-logo-box-logo" src="onion.png">
+                                <div class="en-login-box-title-1">팜맵 기반 노지 양파</div>
+                                <div>
+                                    <div class="en-login-box-title-2">스마트 드론</div>
+                                    <div class="en-login-box-title-3">생육+데이터 서비스</div>
+                                </div>
+                                <form
+                                    class="en-login-box-input"
+                                    type="text"
+                                    placeholder="연락처를 입력하세요."
+                                    autocomplete="usePhoneNumber"
+                                    value
+                                >
+                                    <button type="button" class="en-login-box-login-button">로 그 인</button>
+                                </form>
+                                <div class="en-login-box-exception-label"></div>
+                            </div>
+                            <div class="col-6 en-login-box-image-container"></div>
                         </div>
                     </div>
                 </div>
