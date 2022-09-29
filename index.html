@@ -4,9 +4,18 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
         <title>DroneOnion</title>
         <style>
-            .min-vh-100 {
+            /* 전체 폰트 */
+            * {
+                font-family: 'Nanum Gothic', sans-serif;
+            }
+            
+            /* 메인 로그인 컨테이너 (메인 페이지 구성, 배경 이미지) */
+            .en-login-container {
                 height: 100%;
                 background-image: url(img_loginbg.jpg);
                 align-items: center !important;
@@ -15,42 +24,41 @@
                 display: flex !important;
             }
 
-            .container {
-                height: 600px;
+            /* 로그인 박스 컨테이너 (로그인 박스 외부 컨테이너 위치) */
+            .en-login-box-container {
                 width: 884px;
+                height: 600px;
                 padding: 0;
                 margin-left: auto;
                 margin-right: auto;
                 box-sizing: border-box;
             }
 
-            .row {
+            /* 로그인 박스 컨테이너 (로그인 박스 내부 수정) */
+            .en-login-box-row-container {
                 width: 100%;
                 height: 100%;
-                justify-content: center !important;
-                /* --cui-gutter-x: 1.5rem;
-                --cui-gutter-y: 0; */
                 display: flex;
                 flex-wrap: wrap;
+                /* justify-content: center !important;
+                --cui-gutter-x: 1.5rem;
+                --cui-gutter-y: 0;                
                 /* margin-left: calc(var(--cui-gutter-x) * -0.5);
                 margin-right: calc(var(--cui-gutter-x) * -0.5);
                 margin-top: calc(var(--cui-gutter-y) * -1); */
-                box-sizing: border-box;
             }
 
-            .col-6 {
+            /* 로그인 박스 컨테이너 (왼쪽 컨테이너 수정) */
+            .en-login-box-input-container {
                 align-items: center;
                 background-color: #fff !important;
                 border-radius: 14px 0 0 14px;
                 display: grid;
                 height: 100%;
-                padding: 50px 70px;
-                flex: 0 0 auto;
-                width: 50%;
-                /* margin-top: var(--cui-gutter-y); */
-                max-width: 100%;
+                padding: 50px  70px;
             }
 
+            /* 양파 로고 */
             .en-logo-box-logo {
                 height: 75px;
                 width: 63px;
@@ -58,6 +66,7 @@
                 vertical-align: middle;
             }
 
+            /* 팜맵 기반 노지 양파 */
             .en-login-box-title-1 {
                 align-items: center;
                 color: black;
@@ -68,6 +77,7 @@
                 text-align: center !important;
             }
 
+            /* 스마트 드론 */
             .en-login-box-title-2 {
                 font-size: 36px;
                 letter-spacing: -0.03em;
@@ -77,6 +87,7 @@
                 font-weight: bold;
             }
 
+            /* 생육+데이터 서비스 */
             .en-login-box-title-3 {
                 color: black;
                 font-size: 36px;
@@ -85,48 +96,71 @@
                 text-align: left;
             }
 
+            /* 연락처 입력 폼 */
+            .en-login-box-input {
+                background-color: transparent;
+                border: 1px solid;
+                border-radius: 14px;
+                color: #c2c2c2;
+                display: inline;
+                font-size: 16px;
+                font-weight: bold;
+                height: 60px;
+                line-height: 22px;
+                text-align: center;
+                width: 100%;
+                margin-bottom: 1rem!important;
+            }
+
+            /* 로그인 버튼 */
+            .en-login-box-login-button {
+                background-color: #ec994b;
+                border: 1px solid;
+                border-radius: 14px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 60px;
+                line-height: 22px;
+                text-align: center;
+                width: 100%;
+            }
+
+            /* 로그인 박스 컨테이너 (오른쪽 컨테이너 수정) */
             .en-login-box-image-container {
                 background-image: url(img_loginmain.png);
                 border-radius: 0 14px 14px 0;
                 flex: 0 0 auto;
                 width: 50%;
                 margin-top: var(--cui-gutter-y);
-                max-width: 100%;
-                padding-left: calc(var(--cui-gutter-x) * 0.5);
-                padding-right: calc(var(--cui-gutter-x) * 0.5);
+                /* padding-left: calc(var(--cui-gutter-x) * 0.5);
+                padding-right: calc(var(--cui-gutter-x) * 0.5); */
             }
         </style>
     </head>
     <body>
         <div id="DroneOnion">
-            <div class="min-vh-100 en-login-container">
-                <div class="container en-login-box-container">
-                    <div class="row en-login-box-row-container">
+            <div class="en-login-container">
+                <div class="en-login-box-container">
+                    <div class="en-login-box-row-container">
                         <div class="col-6 en-login-box-input-container">
-                            <img class="mb-4 en-logo-box-logo" src="onion.png">
+                            <img class="en-logo-box-logo" src="onion.png">
                                 <div class="en-login-box-title-1">팜맵 기반 노지 양파</div>
                                 <div>
                                     <div class="en-login-box-title-2">스마트 드론</div>
                                     <div class="en-login-box-title-3">생육+데이터 서비스</div>
                                 </div>
-                                <form
-                                    class="en-login-box-input"
-                                    type="text"
-                                    placeholder="연락처를 입력하세요."
-                                    autocomplete="usePhoneNumber"
-                                    value
-                                >
-                                    <button type="button" class="en-login-box-login-button">로 그 인</button>
-                                </form>
-                                <div class="en-login-box-exception-label"></div>
-                            </div>
+                                <form class>
+                                <input class="en-login-box-input" type="text" placeholder="연락처를 입력하세요." autocomplete="usePhoneNumber" value> 
+                                    <button type="button" class="en-login-box-login-button">로 그 인</button></form>
+                                    <div class="en-login-box-exception-label"></div> <!-- 예외 코드 -->
+                                </div>
                             <div class="col-6 en-login-box-image-container"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
