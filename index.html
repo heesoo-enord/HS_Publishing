@@ -4,16 +4,16 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
         <title>DroneOnion</title>
         <style>
             /* 전체 폰트 */
             * {
-                font-family: 'Nanum Gothic', sans-serif;
+                font-family: "Nanum Gothic", sans-serif;
             }
-            
+
             /* 메인 로그인 컨테이너 (메인 페이지 구성, 배경 이미지) */
             .en-login-container {
                 height: 100%;
@@ -55,7 +55,7 @@
                 border-radius: 14px 0 0 14px;
                 display: grid;
                 height: 100%;
-                padding: 50px  70px;
+                padding: 50px 70px;
             }
 
             /* 양파 로고 */
@@ -109,7 +109,7 @@
                 line-height: 22px;
                 text-align: center;
                 width: 100%;
-                margin-bottom: 1rem!important;
+                margin-bottom: 1rem !important;
             }
 
             /* 로그인 버튼 */
@@ -139,25 +139,30 @@
         </style>
     </head>
     <body>
-        <div id="DroneOnion">
-            <div class="en-login-container">
-                <div class="en-login-box-container">
-                    <div class="en-login-box-row-container">
-                        <div class="col-6 en-login-box-input-container">
-                            <img class="en-logo-box-logo" src="onion.png">
-                                <div class="en-login-box-title-1">팜맵 기반 노지 양파</div>
-                                <div>
-                                    <div class="en-login-box-title-2">스마트 드론</div>
-                                    <div class="en-login-box-title-3">생육+데이터 서비스</div>
-                                </div>
-                                <form class>
-                                <input class="en-login-box-input" type="text" placeholder="연락처를 입력하세요." autocomplete="usePhoneNumber" value> 
-                                    <button type="button" class="en-login-box-login-button">로 그 인</button></form>
-                                    <div class="en-login-box-exception-label"></div> <!-- 예외 코드 -->
-                                </div>
-                            <div class="col-6 en-login-box-image-container"></div>
+        <div class="en-login-container">
+            <div class="en-login-box-container">
+                <div class="en-login-box-row-container">
+                    <div class="col-6 en-login-box-input-container">
+                        <img class="en-logo-box-logo" src="onion.png" />
+                        <div class="en-login-box-title-1">팜맵 기반 노지 양파</div>
+                        <div>
+                            <div class="en-login-box-title-2">스마트 드론</div>
+                            <div class="en-login-box-title-3">생육+데이터 서비스</div>
                         </div>
+                        <form class>
+                            <input
+                                class="en-login-box-input"
+                                type="text"
+                                placeholder="연락처를 입력하세요."
+                                autocomplete="usePhoneNumber"
+                                value
+                            />
+                            <button type="button" class="en-login-box-login-button">로 그 인</button>
+                        </form>
+                        <div class="en-login-box-exception-label"></div>
+                        <!-- 예외 코드 -->
                     </div>
+                    <div class="col-6 en-login-box-image-container"></div>
                 </div>
             </div>
         </div>
