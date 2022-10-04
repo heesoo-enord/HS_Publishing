@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+        <title>DroneOnion_sub1</title>
+        <style>
+            * {
+                font-family: "Nanum Gothic", sans-serif;
+            }
+
+            .root {
+                height: 100%;
+            }
+
+            .en-appsidebar-container {
+                width: 16rem;
+                position: fixed;
+                top: 0;
+                z-index: 1030;
+                background-color: #fff;
+                /* color: var(--cui-sidebar-color,hsla(0,0%,100%,.87));
+                display: flex;
+                flex: 0 0 var(--cui-sidebar-width);
+                flex-direction: column;
+                order: -1;
+                padding: 0; */
+            }
+
+            .sidebar-brand {
+                background-color: #fff;
+                flex: 0 0 4rem;
+                justify-content: center;
+            }
+
+            .en-appsidebar-logo-image {
+                height: 46px;
+                left: 27px;
+                position: absolute;
+                top: 17px;
+                width: 39px;
+            }
+
+            .en-appsidebar-logo-title-container {
+                height: 49px;
+                left: 80px;
+                position: absolute;
+                top: 16px;
+                width: 157px;
+            }
+
+            .en-appsidebar-logo-title-1 {
+                align-items: center;
+                color: black;
+                display: flex;
+                font-size: 20px;
+                letter-spacing: -.03em;
+                line-height: 24px;
+                font-weight: bold;
+            }
+
+            .en-appsidebar-logo-title-2 {
+                align-items: center;
+                color: black;
+                display: flex;
+                font-size: 20px;
+                letter-spacing: -.03em;
+                line-height: 24px;
+            }
+
+            .sidebar-brand-narrow {
+                display: none;
+            }
+
+            .en-appsidebar-logo-small {
+                height: 46px;
+                left: 15px;
+                position: absolute;
+                top: 15px;
+                width: 39px;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex: 1 1;
+                flex-direction: column;
+                list-style: none;
+                margin-bottom: 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 0;
+                position: relative;
+            }
+
+            .en-appsidebar-menu-container {
+                margin-top: 40px;
+            }
+
+            .en-appsidebar-logo-menu-title {
+                color: #a5a5a5;
+                font-size: 16px;
+                font-weight: bold;
+                height: 32px;
+                left: 20px;
+                letter-spacing: 1px;
+                line-height: 22px;
+                position: relative;
+                width: 51px;
+            }
+
+            .simplebar-wrapper {
+                height: inherit;
+                max-height: inherit;
+                max-width: inherit;
+                overflow: hidden;
+                width: inherit;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="root">
+        <div class="en-appsidebar-container">
+            <div class="sidebar-brand" to="/">
+                <div class="sidebar-brand-full">
+                    <img class="en-appsidebar-logo-image" src="img/onion.png" />
+                <div class="en-appsidebar-logo-title-container">
+                        <div class="en-appsidebar-logo-title-1">스마트 드론</div>
+                        <div class="en-appsidebar-logo-title-2">생육 데이터 서비스</div>
+                </div>
+            </div>
+            <div class="sidebar-brand-narrow">
+                <img class="en-appsidebar-logo-small" src="img/onion.png" />
+            </div>
+        </div>
+        <ul class="sidebar-nav en-appsidebar-menu-container">
+            <div class="en-appsidebar-logo-menu-title" idex="0">메뉴</div>
+            <div data-simplebar="init" idx="1">
+                <div class="simplebar-wrapper" style="margin: 0px">
+                    <div class="simplebar-height-auto-observer-wrapper">
+                        <div class="simplebar-height-auto-observer"></div>
+                    </div>
+                    <div class="simplebar-mask">
+                        <div class="simplebar-offset" style="right: 0px; bottom: 0px">
+                            <div
+                                class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden">
+                                <div class="simplebar-content" style="padding: 0px">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#/dashboard" aria-current="page">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon.png" width="26" height="23"/>대시보드</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/landManagement">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon2.png" width="26" height="23"/>농지관리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/userManagement">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon3.png" width="26" height="23"/>사용자 관리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/userLog">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon4.png" width="26" height="23"/>사용자 이용현황</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/pests">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon5.png" width="26" height="23"/>병해충 목록</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/photoManagement">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon6.png" width="26" height="23"/>사진관리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/weather">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon7.png" width="26" height="23"/>주산지 기상정보</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#/price">
+                                            <img class="nav-icon en-appsidebar-icon" src="icon8.png" width="26" height="23"/>시세정보</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="simplebar-placeholder" style="width: auto; height: 416px;">
+                </div>
+                <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                    <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                </div>
+                <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                    <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
+                </div>    
+            </div>
+        </ul>
+        <button class="sidebar-toggler d-none d-lg-flex en-appsidebar-toggler"></button>
+    </div>
+        <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent en-defaultlayout">
+            <div class="header header-sticky en-appheader-container"><div class="container-fluid" style="padding: 0px;">
+                <button type="button" class="header-toggler ps-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-lg en-appheader-menu-icon" role="img">
+                        <rect width="352" height="32" x="80" y="96" fill="var(--ci-primary-color, currentColor)" class="ci-primary"></rect>
+                        <rect width="352" height="32" x="80" y="240" fill="var(--ci-primary-color, currentColor)" class="ci-primary"></rect>
+                        <rect width="352" height="32" x="80" y="384" fill="var(--ci-primary-color, currentColor)" class="ci-primary"></rect>
+                    </svg>
+                </button>
+                <ul class="header-nav d-none d-md-flex me-auto" role="navigation">
+                    <li class="nav-item"></li>
+                </ul>
+                <button type="button" class="header-toggler px-md-0 me-md-3 en-appheader-user">
+                    <img class="en-appheader-profile-icon" src="mypage.png">홍길동 님 반갑습니다.</button>
+                    <button class="btn btn-primary en-appheader-logout" type="button">
+                        <img class="en-appheader-logout-icon" src="logout.png">
+                    <div class="en-appheader-logout-label">로그아웃</div>
+                </button>
+            </div>
+        </div>
+            <div class="body flex-grow-1 en-defaultlayout-appcontent">
+                <div class="en-appcontent-container">
+                    <div class="container-fluid en-dashboard-container">
+                        <div id="map" style="width: 100%;height: calc(100vh - 64px);">
+                            <div style="position: absolute;left: 0px;top: 0px;">
+                                <a id="image-download" download="map.png"></a>
+                            </div>
+                            <div class="ol-viewport" style="position: relative;overflow: hidden;width: 100%;height: 100%;">
+                                <div class="ol-unselectable ol-layers" style="position: absolute;width: 100%;height: 100%;z-index: 0;">
+                                    <div class="ol-layer" style="position: absolute;width: 100%;height: 100%;">
+                                        <canvas width="1664" height="905" style="position: absolute;left: 0px;transform-origin: left top;transform: matrix(1, 0, 0, 1, 0, 0);"></canvas>
+                                    </div>
+                                </div>
+                                <div class="ol-overlaycontainer" style="position: absolute; z-index: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+                                <div class="ol-overlaycontainer-stopevent" style="position: absolute; z-index: 0; width: 100%; height: 100%; pointer-events: none;">
+                                    <div class="ol-overlay-container ol-selectable" style="position: absolute; pointer-events: auto; display: none;">
+                                        <div class="ol-popup" style="visibility: hidden;">
+                                            <div class="en-popover-top-box"><div class="en-popover-name"> </div>
+                                            <button class="en-button en-popover-detail-button">상세정보</button>
+                                        </div>
+                                        <div class="en-popover-info-innerbox">
+                                            <div class="en-popover-info-iconbox">
+                                                <img class="en-popover-info-icon" src="info-icon.png" alt="">
+                                            </div>
+                                            <div class="en-popover-info-subbox">
+                                                <div class="en-popover-info-subtitle">농지주소</div>
+                                                <div class="en-popover-info-subtext">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="en-popover-info-innerbox">
+                                            <div class="en-popover-info-iconbox">
+                                                <img class="en-popover-info-icon" src="info-icon2.png" alt="">
+                                            </div>
+                                            <div class="en-popover-info-subbox">
+                                                <div class="en-popover-info-subtitle">촬영주차</div>
+                                                <div class="en-popover-info-subtext">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="en-popover-line"> </div>
+                                        <div class="en-popover-bottom-box">
+                                            <div class="en-popover-title">재배품종</div>
+                                            <div class="en-popover-text">                                              
+                                            </div>
+                                        </div>
+                                        <div class="en-popover-bottom-box">
+                                            <div class="en-popover-title">NDVI 지수</div>
+                                            <div class="en-popover-text">
+                                            </div>
+                                        </div>
+                                        <div class="en-popover-bottom-box">
+                                            <div class="en-popover-title">병해충 발생여부</div>
+                                            <div class="en-popover-text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ol-zoom ol-unselectable ol-control" style="pointer-events: auto;">
+                                    <button class="ol-zoom-in" type="button" title="Zoom in">+</button>
+                                    <button class="ol-zoom-out" type="button" title="Zoom out">–</button>
+                                </div>
+                                <div class="ol-rotate ol-unselectable ol-control ol-hidden" style="pointer-events: auto;">
+                                    <button class="ol-rotate-reset" type="button" title="Reset rotation">
+                                        <span class="ol-compass" style="transform: rotate(0rad);">⇧</span>
+                                    </button>
+                                </div>
+                                <div class="ol-attribution ol-unselectable ol-control ol-collapsed" style="pointer-events: auto; display: none;">
+                                    <button type="button" aria-expanded="false" title="Attributions">
+                                        <span class="ol-attribution-expand">i</span>
+                                    </button>
+                                    <ul>
+                                    </ul>
+                                </div>
+                                <div class="ol-unselectable ol-control" style="top: 200px; left: 8px; pointer-events: auto;">
+                                    <button style="width: 50px; margin-top: 5px; margin-bottom: 5px;">위성</button>
+                                    <button style="width: 50px; margin-top: 5px; margin-bottom: 5px;">지도</button>
+                                    <button id="export-png" style="width: 50px; margin-top: 5px; margin-bottom: 5px;">PNG</button>
+                                </div>
+                                <div class="ol-unselectable ol-control" style="top: 200px; left: 8px; pointer-events: auto;">
+                                    <button style="width: 50px; margin-top: 5px; margin-bottom: 5px;">위성</button><button style="width: 50px; margin-top: 5px; margin-bottom: 5px;">지도</button>
+                                    <button id="export-png" style="width: 50px; margin-top: 5px; margin-bottom: 5px;">PNG</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="en-dashboard-date-container">
+                        <div class="en-select-date-container justify-content-center">
+                            <img class="en-select-date-icon" src="date-icon.png">
+                            <select class="form-select en-select-date-yearbox" name="selectedYear">
+                                <option value="2022">2022</option></select>
+                                <div class="en-select-date-label">년</div>
+                                <select class="form-select en-select-date-monthbox" name="selectedMonth">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option><option value="3">3</option>
+                                    <option value="4">4</option><option value="5">5</option>
+                                    <option value="6">6</option><option value="7">7</option>
+                                    <option value="8">8</option><option value="9">9</option>
+                                    <option value="10">10</option><option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                    <div class="en-select-date-label">월</div>
+                                    <select class="form-select en-select-date-monthbox" name="selectedWeekly">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select> 
+                                    <div class="en-select-date-label">주차</div>
+                                    <button class="btn btn-primary en-select-date-button" type="button">조회</button>
+                                </div>
+                            </div>
+                            <div class="en-dashboard-alert-container">
+                                    <img class="en-dashboard-alert-icon" src="alert-icon.png">
+                                    <div class="en-dashboard-alert-title">병해충 발생 알림</div>
+                                    <button class="btn btn-primary en-dashboard-alert-button" type="button"> 펼치기</button>
+                                </div>
+                                <div class="container en-dashboard-alert-list-container" style="height: 0px;">
+                                    <div class="collapse"><ul class="list-group">
+                                        <div class="en-dashboard-alert-empty">목록 없음</div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="container en-dashboard-vegetation-index-container">
+                                <div class="row">
+                                    <div class="col en-dashboard-vegetation-index-title">식생지수</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                        <div class="en-dashboard-vegetation-index-color" style="background-color: rgb(243, 54, 14);"></div>
+                                    </div>
+                                    <div class="col en-dashboard-vegetation-index-label">&lt; 0</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                        <div class="en-dashboard-vegetation-index-color" style="background-color: rgb(242, 133, 6);">
+                                        </div>
+                                    </div>
+                                    <div class="col en-dashboard-vegetation-index-label">0.0 - 0.2</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                        <div class="en-dashboard-vegetation-index-color" style="background-color: rgb(252, 201, 73);"></div>
+                                    </div>
+                                    <div class="col en-dashboard-vegetation-index-label">0.2 - 0.4</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                        <div class="en-dashboard-vegetation-index-color" style="background-color: rgb(79, 185, 162);">
+                                        </div>
+                                    </div>
+                                    <div class="col en-dashboard-vegetation-index-label">0.4 - 0.6</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                        <div class="en-dashboard-vegetation-index-color" style="background-color: rgb(8, 133, 135);"></div>
+                                    </div>
+                                    <div class="col en-dashboard-vegetation-index-label">0.6 ≤</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
