@@ -17,18 +17,15 @@
                 height: 100%;
             }
 
-            .en-appsidebar-container {
+            .sidebar {
                 width: 16rem;
-                position: fixed;
+                display: flex;
+                flex-direction: column;
+                order: -1;
+                padding: 0;
                 top: 0;
                 z-index: 1030;
                 background-color: #fff;
-                /* color: var(--cui-sidebar-color,hsla(0,0%,100%,.87));
-                display: flex;
-                flex: 0 0 var(--cui-sidebar-width);
-                flex-direction: column;
-                order: -1;
-                padding: 0; */
             }
 
             .sidebar-brand {
@@ -120,12 +117,62 @@
                 width: inherit;
             }
 
+            .nav-link.active {
+                background: #ffeccf;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+                opacity: 1;
+            }
+
+            .nav-link {
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+                opacity: .5;
+                display: flex;
+            }
+
+            .nav-icon {
+                margin-left: -1rem;
+                flex: 0 0 4rem;
+                font-size: 1.25rem;
+                height: 1.25rem;
+                text-align: center;
+            }
+
+            .sidebar-toggler {
+                border: 0;
+                flex: 0 0 3rem;
+                justify-content: flex-end;
+                padding: 0;
+                width: inherit;
+                background-color: #fff;
+            }
+
+            .en-appheader-container {
+                background-color: #ec994b;
+                padding: 0;
+            }
+
+            .header {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                min-height: 4rem;
+            }
+
+            .flex-column {
+                flex-direction: column!important;
+            }
 
         </style>
     </head>
     <body>
         <div id="root">
-        <div class="en-appsidebar-container">
+        <div class="sidebar en-appsidebar-container">
             <div class="sidebar-brand" to="/">
                 <div class="sidebar-brand-full">
                     <img class="en-appsidebar-logo-image" src="img/onion.png" />
@@ -199,7 +246,8 @@
         <button class="sidebar-toggler d-none d-lg-flex en-appsidebar-toggler"></button>
     </div>
         <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent en-defaultlayout">
-            <div class="header header-sticky en-appheader-container"><div class="container-fluid" style="padding: 0px;">
+            <div class="header header-sticky en-appheader-container">
+                <div class="container-fluid" style="padding: 0px;">
                 <button type="button" class="header-toggler ps-1">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon icon-lg en-appheader-menu-icon" role="img">
                         <rect width="352" height="32" x="80" y="96" fill="var(--ci-primary-color, currentColor)" class="ci-primary"></rect>
