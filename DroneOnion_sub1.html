@@ -26,6 +26,7 @@
                 top: 0;
                 z-index: 1030;
                 background-color: #fff;
+                box-shadow: 0 2px 2px 0 rgba(var(--cui-elevation-base-color,60,75,100),.14),0 3px 1px -2px rgba(var(--cui-elevation-base-color,60,75,100),.12),0 1px 5px 0 rgba(var(--cui-elevation-base-color,60,75,100),.2);
             }
 
             .sidebar-brand {
@@ -109,26 +110,26 @@
                 width: 51px;
             }
 
-            /* .nav-item {
+            .nav-item {
                 align-items: center;
-                padding: 0.8445rem 1rem;
-            } */
+                padding: 3px;       
+                text-decoration: none;
+            }
 
-            .nav-link.active {
+            .active {
                 background: #ffeccf;
                 color: #ce7d00;
                 font-size: 18px;
                 font-weight: bold;
                 line-height: 25px;
-                opacity: 1;
-            } 
+            }  
             
             .nav-link {
-                color: #ce7d00;
+                color: #ce7d00!important;
                 font-size: 18px;
                 line-height: 25px;
                 opacity: .5;
-                display: flex;
+                align-items: center;
             }
 
             .nav-icon {
@@ -137,6 +138,8 @@
                 height: 1.25rem;
                 text-align: center;
                 transition: inherit;
+                object-fit: contain;
+                margin-right: 1rem;
             } 
 
             .sidebar-toggler {
@@ -153,7 +156,7 @@
                 content: "";
                 display: block;
                 height: 3rem;
-                width: 4rem;
+                width: 300px;
             }
 
             .en-appheader-container {
@@ -168,9 +171,9 @@
                 min-height: 4rem;
             }
 
-            .flex-column {
+            /* .flex-column {
                 flex-direction: column!important;
-            }
+            } */
 
             .en-dashboard-container {
                 height: 100%;
@@ -183,7 +186,7 @@
                 width: 100%;
                 height: calc(100vh - 64px);
             }
-            
+        
 
         </style>
     </head>
@@ -195,7 +198,8 @@
                     <img class="en-appsidebar-logo-image" src="img/onion.png" />
                 <div class="en-appsidebar-logo-title-container">
                         <div class="en-appsidebar-logo-title-1">스마트 드론</div>
-                        <div class="en-appsidebar-logo-title-2">생육 데이터 서비스</div>
+                        <div class="en-appsidebar-logo-title-2">생육 데이터 서비스
+                    </div>
                 </div>
             </div>
             <div class="sidebar-brand-narrow">
@@ -205,62 +209,69 @@
         <ul class="sidebar-nav en-appsidebar-menu-container">
             <div class="en-appsidebar-logo-menu-title" idex="0">메뉴</div>
             <div data-simplebar="init" idx="1">
-                <div class="simplebar-wrapper" style="margin: 0px">
+                <div class="simplebar-wrapper">
                     <div class="simplebar-height-auto-observer-wrapper">
                         <div class="simplebar-height-auto-observer"></div>
                     </div>
                     <div class="simplebar-mask">
-                        <div class="simplebar-offset" style="right: 0px; bottom: 0px">
-                            <div
-                                class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden">
+                        <div class="simplebar-offset">
+                            <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content">
                                 <div class="simplebar-content" style="padding: 0px">
                                     <li class="nav-item">
                                         <a class="nav-link active" href="#/dashboard" aria-current="page">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_dashboard 2.png" width="26" height="23"/>대시보드</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_dashboard 2.png" width="26" height="23"/>대시보드
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/landManagement">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_farm2.png" width="26" height="23"/>농지관리</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_farm2.png" width="26" height="23"/>농지관리
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/userManagement">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_user2.png" width="26" height="23"/>사용자 관리</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_user2.png" width="26" height="23"/>사용자 관리
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/userLog">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_status2.png" width="26" height="23"/>사용자 이용현황</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_status2.png" width="26" height="23"/>사용자 이용현황
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/pests">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_bug2.png" width="26" height="23"/>병해충 목록</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_bug2.png" width="26" height="23"/>병해충 목록
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/photoManagement">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_piclist2.png" width="26" height="23"/>사진관리</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_piclist2.png" width="26" height="23"/>사진관리
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/weather">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_weather.png" width="26" height="23"/>주산지 기상정보</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_weather.png" width="26" height="23"/>주산지 기상정보
+                                        </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#/price">
-                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_market.png" width="26" height="23"/>시세정보</a>
+                                            <img class="nav-icon en-appsidebar-icon" src="img/icon_market.png" width="26" height="23"/>시세정보
+                                        </a>
                                     </li>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <div class="simplebar-placeholder" style="width: auto; height: 416px;">
+                <div class="simplebar-placeholder" style="width: auto; height: 416px;"></div>
                 </div>
                 <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-                    <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                    <div class="simplebar-scrollbar" style="width: 0px; display: none; transform: translate3d(0px, 0px, 0px);"></div>
                 </div>
                 <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
-                    <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
-                </div>    
+                    <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>  
             </div>
-        </ul>
-        <button class="sidebar-toggler d-none d-lg-flex en-appsidebar-toggler"></button>
+        </div>
+    </ul>
+        <button class="sidebar-toggler en-appsidebar-toggler"></button>
     </div>
         <div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent en-defaultlayout">
             <div class="header header-sticky en-appheader-container">
@@ -273,7 +284,8 @@
                     </svg>
                 </button>
                 <ul class="header-nav d-none d-md-flex me-auto" role="navigation">
-                    <li class="nav-item"></li>
+                    <li class="nav-item">
+                    </li>
                 </ul>
                 <button type="button" class="header-toggler px-md-0 me-md-3 en-appheader-user">
                     <img class="en-appheader-profile-icon" src="mypage.png">홍길동 님 반갑습니다.</button>
@@ -308,9 +320,9 @@
                                                 <img class="en-popover-info-icon" src="info-icon.png" alt="">
                                             </div>
                                             <div class="en-popover-info-subbox">
-                                                <div class="en-popover-info-subtitle">농지주소</div>
-                                                <div class="en-popover-info-subtext">
+                                                <div class="en-popover-info-subtitle">농지주소                                                   
                                                 </div>
+                                                <div class="en-popover-info-subtext"></div>
                                             </div>
                                         </div>
                                         <div class="en-popover-info-innerbox">
@@ -319,25 +331,21 @@
                                             </div>
                                             <div class="en-popover-info-subbox">
                                                 <div class="en-popover-info-subtitle">촬영주차</div>
-                                                <div class="en-popover-info-subtext">
-                                                </div>
+                                                <div class="en-popover-info-subtext"></div>
                                             </div>
                                         </div>
                                         <div class="en-popover-line"> </div>
                                         <div class="en-popover-bottom-box">
                                             <div class="en-popover-title">재배품종</div>
-                                            <div class="en-popover-text">                                              
-                                            </div>
+                                            <div class="en-popover-text"></div>
                                         </div>
                                         <div class="en-popover-bottom-box">
                                             <div class="en-popover-title">NDVI 지수</div>
-                                            <div class="en-popover-text">
-                                            </div>
+                                            <div class="en-popover-text"></div>
                                         </div>
                                         <div class="en-popover-bottom-box">
                                             <div class="en-popover-title">병해충 발생여부</div>
-                                            <div class="en-popover-text">
-                                            </div>
+                                            <div class="en-popover-text"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -354,8 +362,7 @@
                                     <button type="button" aria-expanded="false" title="Attributions">
                                         <span class="ol-attribution-expand">i</span>
                                     </button>
-                                    <ul>
-                                    </ul>
+                                    <ul></ul>
                                 </div>
                                 <div class="ol-unselectable ol-control" style="top: 200px; left: 8px; pointer-events: auto;">
                                     <button style="width: 50px; margin-top: 5px; margin-bottom: 5px;">위성</button>
