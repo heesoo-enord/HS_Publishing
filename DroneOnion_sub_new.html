@@ -89,7 +89,10 @@
     <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
     <div class="navbar-nav">
       <div class="nav-item text-nowrap">
-        <a class="nav-link px-3 text-dark" href="#">로그아웃</a>
+        <button class="btn nav-logout" type="button">
+            <img class="nav-logout-icon" src="img/icon_logout.png">
+        <div class="nav-logout-label">로그아웃</div>
+    </button>
       </div>
     </div>
   </header>
@@ -98,14 +101,14 @@
     <div class="row">
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
         <div class="position-sticky pt-3 sidebar-sticky">
-            <!-- <p class="menu-text">메뉴</p> -->
+            <p class="menu-text">메뉴</p>
           <ul class="nav flex-column">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link disabled" aria-current="page">
                 <span data-feather="home" class="align-text-bottom"></span>
                 메뉴
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link active" href="#">
                 <img class="nav-icon" src="img/icon_dashboard 2.png" width="26" height="23"/>
@@ -167,8 +170,7 @@
       </nav>
   
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Map</h1>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">        
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-secondary">위성</button>
@@ -179,8 +181,7 @@
         </div>
 
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26208.98821090842!2d126.40269042127717!3d34.802833985050825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3573a4a7a6f3bc5f%3A0xbbb625ae00c88694!2z7KCE652864Ko64-EIOuqqe2PrOyLnA!5e0!3m2!1sko!2skr!4v1665724307152!5m2!1sko!2skr" width="1500" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  
-        
+         
       </main>
     </div>
   </div>
