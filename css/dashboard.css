@@ -74,6 +74,18 @@ body {
  * Navbar
  */
 
+.nav-user {
+    justify-content: space-between;
+}
+
+.nav-link {
+    color: #ce7d00 !important;
+}
+
+.nav-link.active {
+    background-color: #ffeccf;
+}
+
 .navbar-brand {
     color: black;
     height: 49px;
