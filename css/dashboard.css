@@ -11,6 +11,15 @@ body {
  * Sidebar
  */
 
+.navbar-logo-image {
+    height: 46px;
+    left: 27px;
+    top: 17px;
+    width: 39px;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -22,7 +31,7 @@ body {
     /* rtl:remove */
     left: 0;
     z-index: 100; /* Behind the navbar */
-    padding: 48px 0 0; /* Height of navbar */
+    padding: 80px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -67,6 +76,11 @@ body {
 
 .navbar-brand {
     color: black;
+    height: 49px;
+    left: 80px;
+    top: 16px;
+    width: 157px;
+    font-size: 19px;
 }
 
 .navbar .navbar-toggler {
@@ -75,11 +89,10 @@ body {
 }
 
 .navbar .form-control {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 7rem;
 }
 
 .form-control-dark {
-
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.1);
 }
