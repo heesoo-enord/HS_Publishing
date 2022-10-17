@@ -17,6 +17,7 @@
 
             .header {
                 height: 100px;
+                border-right: 1px solid #c2c2c2;
             }
 
             .header-logo-image {
@@ -46,7 +47,9 @@
             }
 
             .sidebar {
-                height: 800px;
+                height: 890px;
+                border-right: 1px solid #c2c2c2;
+                width: 400px;
             }
 
             .active {
@@ -71,8 +74,12 @@
             }
 
             .top-menu {
+                justify-items: center;
                 background-color: #ec994b;
                 height: 4rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 box-shadow: 0 2px 2px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.14),
                     0 3px 1px -2px rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.12),
                     0 1px 5px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.2);
@@ -87,6 +94,52 @@
                 transition: inherit;
                 object-fit: contain;
                 margin-right: 1rem;
+            }
+
+            .header-profile-icon {
+                margin-right: 11px;
+            }
+
+            .header-user {
+                align-items: center;
+                color: #fff;
+                display: flex;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                background-color: transparent;
+                border: 0;
+                border-radius: 0.25rem;
+                margin-left: 1200px;
+            }
+
+            .header-logout-icon {
+                vertical-align: middle;
+                height: 24px;
+                margin-right: 7px;
+                margin-top: 3px;
+                width: 26px;
+            }
+
+            .btn.header-logout {
+                background-color: #fff;
+                display: flex;
+                height: 44px;
+                margin-right: 32px;
+                margin-top: 10px;
+                width: 140px;
+                border-radius: 8px;
+                line-height: 22px;
+                font-size: 16px;
+            }
+
+            .header-logout-label {
+                align-items: center;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-top: 6px;
             }
 
             #map {
@@ -104,7 +157,15 @@
                     <p class="header-title2">생육 데이터 서비스</p>
                 </div>
             </div>
-            <div class="col-md-10 top-menu"></div>
+            <div class="col-md-10 top-menu">
+                <button type="button" class="header-toggler px-md-0 me-md-3 header-user">
+                    <img class="header-profile-icon" src="img/icon_user2.png" />홍길동 님 반갑습니다.
+                </button>
+                <button class="btn header-logout" type="button">
+                    <img class="header-logout-icon" src="img/icon_logout.png" />
+                    <div class="header-logout-label">로그아웃</div>
+                </button>
+            </div>
         </div>
         <div class="row g-0">
             <div class="col-md-2 sidebar">
