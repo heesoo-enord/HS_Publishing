@@ -172,11 +172,6 @@
                 <p class="menu-text">메뉴</p>
                 <ul class="nav flex-column sidebar-menu">
                     <li class="nav-item">
-                        <a class="menu-trigger" href="#">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </a>
                         <a class="nav-link active" href="#">
                             <img class="nav-icon" src="img/icon_dashboard 2.png" width="26" height="23" />
                             <span data-feather="file" class="align-text-bottom"></span>
@@ -243,7 +238,8 @@
                                 new ol.layer.Tile({
                                     source: new ol.source.XYZ({
                                         //Vworld Tile 변경
-                                        url: "http://xdworld.vworld.kr:8080/2d/Base/202002/{z}/{x}/{y}.png",
+                                        url: "https://xdworld.vworld.kr/2d/Base/service/{z}/{x}/{y}.png",
+                                        crossOrigin: "anonymous",
                                     }),
                                 }),
                             ],
