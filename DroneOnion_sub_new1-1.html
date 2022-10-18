@@ -146,6 +146,42 @@
                 height: 850px;
                 width: 100%;
             }
+
+            #traffic {
+                font-size: 17px;
+                position: absolute;
+                top: 20%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #traffic2 {
+                font-size: 17px;
+                position: absolute;
+                top: 25%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #traffic3 {
+                font-size: 17px;
+                position: absolute;
+                top: 30%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
         </style>
     </head>
     <body>
@@ -231,13 +267,15 @@
             </div>
             <div class="col-md-10">
                 <div id="map" class="map">
+                    <button id="traffic" type="button" class="btn btn-info btn-lg">위성</button>
+                    <button id="traffic2" type="button" class="btn btn-info btn-lg">지도</button>
+                    <button id="traffic3" type="button" class="btn btn-info btn-lg">PNG</button>
                     <script type="text/javascript">
                         var map = new ol.Map({
                             target: "map",
                             layers: [
                                 new ol.layer.Tile({
                                     source: new ol.source.XYZ({
-                                        //Vworld Tile 변경
                                         url: "https://xdworld.vworld.kr/2d/Base/service/{z}/{x}/{y}.png",
                                         crossOrigin: "anonymous",
                                     }),
