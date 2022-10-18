@@ -147,7 +147,7 @@
                 width: 100%;
             }
 
-            #traffic {
+            #map-button1 {
                 font-size: 17px;
                 position: absolute;
                 top: 20%;
@@ -159,7 +159,7 @@
                 width: 70px;
             }
 
-            #traffic2 {
+            #map-button2 {
                 font-size: 17px;
                 position: absolute;
                 top: 25%;
@@ -171,7 +171,7 @@
                 width: 70px;
             }
 
-            #traffic3 {
+            #map-button3 {
                 font-size: 17px;
                 position: absolute;
                 top: 30%;
@@ -181,6 +181,100 @@
                 color: #fff;
                 border: 0;
                 width: 70px;
+            }
+
+            .map-form-control {
+                z-index: 10;
+                position: absolute;
+                top: 100px;
+                left: 380px;
+                width: 500px;
+                background-color: #ec994b;
+                color: #fff;
+            }
+
+            .en-dashboard-date-container {
+                background-color: #fff;
+                border-radius: 14px;
+                height: 60px;
+                left: 380px;
+                position: absolute;
+                top: 105px;
+                width: 570px;
+                z-index: 10;
+            }
+
+            .en-select-date-icon {
+                height: 28px;
+                margin-left: 11px;
+                width: 28px;
+            }
+
+            .en-select-date-container {
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                width: 100%;
+            }
+
+            .en-select-date-yearbox {
+                height: 40px;
+                margin-left: 16px;
+                width: 100px;
+            }
+
+            .en-select-date-label {
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                width: 30%;
+            }
+
+            .en-select-date-label-2 {
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-left: 10px;
+                width: 70%;
+            }
+
+            .en-select-date-label {
+                height: 22px;
+                margin-left: 8px;
+            }
+
+            .en-select-date-monthbox {
+                height: 40px;
+                margin-left: 20px;
+                width: 80px;
+            }
+
+            .en-select-date-button {
+                background: #ec994b !important;
+                border: 0;
+                box-shadow: 0 4px 4px rgb(0 0 0 / 4%);
+                color: #fff;
+                height: 40px;
+                margin-right: 3px;
+                width: 100%;
+            }
+
+            .form-select {
+                border: 1px solid #b1b7c1;
+                border-radius: 0.375rem;
+                display: block;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                width: 100%;
+                display: block;
+            }
+
+            .date-label {
+                font-size: 16px;
+                font-weight: var(--e-font-weight-bold);
+                line-height: 22px;
             }
         </style>
     </head>
@@ -267,9 +361,84 @@
             </div>
             <div class="col-md-10">
                 <div id="map" class="map">
-                    <button id="traffic" type="button" class="btn btn-info btn-lg">위성</button>
-                    <button id="traffic2" type="button" class="btn btn-info btn-lg">지도</button>
-                    <button id="traffic3" type="button" class="btn btn-info btn-lg">PNG</button>
+                    <div class="en-dashboard-date-container">
+                        <div class="en-select-date-container justify-content-center">
+                            <img
+                                class="en-select-date-icon"
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEBSURBVHgB7ZfLTcNAEEDfbArAJaQEGxoglSQdwJ1ENgg4hw5ICVQAFcQpISWkAOxhFvI5IEv2IZnLPmk1Y8ljP9maXY3QQV0x1obPmMuISVGxZQB960PXA9pv7i2M49rng+hb3ykgkB1vEq4YSN/6gDPuAnJI6gduTWeqWPwj4/QZd/s1hP/1yk6EDQ1vxavFg0A9p1Sh4oKYSFU88SjWLrm1S40DTcsktA0lTowCpXXI8Z97kMcuyPAjc2/DhDuyXtj+5Eg6jJJAEkgCSSAJRIEtXiiboC0rnJDA8ncuWM95twlhyiVRVtfPzE6T0YKZKncmknNOlC97z8fNC8t4+QOpZknhxwwN9AAAAABJRU5ErkJggg=="
+                            />
+                            <select class="form-select en-select-date-yearbox" name="selectedYear">
+                                <option value="2022">2022</option>
+                            </select>
+                            <div class="en-select-date-label">년</div>
+                            <select class="form-select en-select-date-monthbox" name="selectedMonth">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <div class="en-select-date-label">월</div>
+                            <select class="form-select en-select-date-monthbox" name="selectedWeekly">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <div class="en-select-date-label-2">주차</div>
+                            <button class="btn btn-primary en-select-date-button" type="button">조회</button>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row g-3 map-form-control">
+                        <div class="col-sm">
+                            <label for="year" class="col-form-label">Year</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>2022</option>
+                            </select>
+                        </div>
+                        <div class="col-sm">
+                            <label for="month" class="col-form-label">Month</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>10</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">2</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="week" class="col-form-label">Week</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>3</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">2</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div> -->
+
+                    <button id="map-button1" type="button" class="btn btn-info btn-lg">위성</button>
+                    <button id="map-button2" type="button" class="btn btn-info btn-lg">지도</button>
+                    <button id="map-button3" type="button" class="btn btn-info btn-lg">PNG</button>
                     <script type="text/javascript">
                         var map = new ol.Map({
                             target: "map",
