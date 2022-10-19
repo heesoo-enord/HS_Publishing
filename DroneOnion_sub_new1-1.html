@@ -273,8 +273,57 @@
 
             .date-label {
                 font-size: 16px;
-                font-weight: var(--e-font-weight-bold);
+                font-weight: bold;
                 line-height: 22px;
+            }
+
+            .en-dashboard-vegetation-index {
+                z-index: 10;
+                top: 700px;
+                left: 1700px;
+                position: absolute;
+                background-color: #fff;
+                display: flex;
+                flex-wrap: wrap;
+                height: 230px;
+                width: 124px;
+                border-radius: 14px;
+                box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+            }
+
+            .en-dashboard-vegetation-index-color {
+                border-radius: 40px;
+                height: 20px;
+                vertical-align: middle;
+                width: 20px;
+            }
+
+            .en-dashboard-vegetation-index-title {
+                color: #202020;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-bottom: 15px;
+                margin-top: 21px;
+                margin-left: 30px;
+                text-align: center;
+            }
+
+            .en-dashboard-vegetation-index-color-box {
+                margin-bottom: 5px;
+                margin-top: 6px;
+                margin-left: 5px;
+            }
+
+            .en-dashboard-vegetation-index-label {
+                color: #202020;
+                font-size: 14px;
+                font-weight: 600;
+                line-height: 19px;
+                margin-top: 7px;
+                padding-left: 10px;
+                text-align: left;
+                text-transform: capitalize;
             }
         </style>
     </head>
@@ -395,43 +444,56 @@
                         </div>
                     </div>
 
-                    <!-- <div class="row g-3 map-form-control">
-                        <div class="col-sm">
-                            <label for="year" class="col-form-label">Year</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>2022</option>
-                            </select>
+                    <div class="en-dashboard-vegetation-index">
+                        <div class="row">
+                            <div class="col en-dashboard-vegetation-index-title">식생지수</div>
                         </div>
-                        <div class="col-sm">
-                            <label for="month" class="col-form-label">Month</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>10</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">2</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                <div
+                                    class="en-dashboard-vegetation-index-color"
+                                    style="background-color: rgb(243, 54, 14)"
+                                ></div>
+                            </div>
+                            <div class="col en-dashboard-vegetation-index-label">&lt; 0</div>
                         </div>
-                        <div class="col">
-                            <label for="week" class="col-form-label">Week</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>3</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">2</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                <div
+                                    class="en-dashboard-vegetation-index-color"
+                                    style="background-color: rgb(242, 133, 6)"
+                                ></div>
+                            </div>
+                            <div class="col en-dashboard-vegetation-index-label">0.0 - 0.2</div>
                         </div>
-                    </div> -->
+                        <div class="row">
+                            <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                <div
+                                    class="en-dashboard-vegetation-index-color"
+                                    style="background-color: rgb(252, 201, 73)"
+                                ></div>
+                            </div>
+                            <div class="col en-dashboard-vegetation-index-label">0.2 - 0.4</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                <div
+                                    class="en-dashboard-vegetation-index-color"
+                                    style="background-color: rgb(79, 185, 162)"
+                                ></div>
+                            </div>
+                            <div class="col en-dashboard-vegetation-index-label">0.4 - 0.6</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 en-dashboard-vegetation-index-color-box">
+                                <div
+                                    class="en-dashboard-vegetation-index-color"
+                                    style="background-color: rgb(8, 133, 135)"
+                                ></div>
+                            </div>
+                            <div class="col en-dashboard-vegetation-index-label">0.6 ≤</div>
+                        </div>
+                    </div>
 
                     <button id="map-button1" type="button" class="btn btn-info btn-lg">위성</button>
                     <button id="map-button2" type="button" class="btn btn-info btn-lg">지도</button>
