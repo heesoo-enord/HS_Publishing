@@ -240,18 +240,13 @@
                 margin-left: 9px;
                 text-align: center;
                 width: 120px!important;
+                border: 0!important;
             }
 
             .en-table-container {
                 margin: 0;
                 max-width: 100%;
                 padding: 27px 56px 97px;
-            }
-
-            .en-table {
-                background: #fff;
-                border-radius: 14px 14px 14px 14px;
-                margin-top: 25px;
             }
 
             .en-table-header {
@@ -261,6 +256,87 @@
                 line-height: 25px;
                 text-align: center;
                 vertical-align: middle;
+            }
+
+            .table {
+                background-color: #fff;
+                margin-top: 25px;
+                border-radius: 14px 14px 14px 14px;
+            }
+
+            .en-table-row {
+                color: #000!important;
+                height: 56px;
+                line-height: 22px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .en-table-edit-button {
+                background-color: #ec994b;
+                border-radius: 8px;
+                border-width: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 40px;
+                line-height: 22px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                width: 65px;
+            }
+
+            .en-table-delete-button {
+                background-color: #ff4646;
+                border-radius: 8px;
+                border-width: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 40px;
+                line-height: 22px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                width: 65px;
+            }
+
+            .page-item.disabled .page-link {
+                background: transparent;
+            }
+
+            .page-link {
+                background: transparent;
+                border-width: 1px;
+                display: table-cell;
+                font-size: 18px;
+                height: 50px;
+                margin: 0 5px!important;
+                padding: 0!important;
+                text-align: center;
+                vertical-align: middle;
+                width: 50px;
+                border-radius: 14px;
+                font-weight: thin;
+                line-height: 25px;
+            }
+
+            .page-link {
+                background-color: #ec994b;
+            }
+
+            .en-table-regi-button {
+                background: #ec994b!important;
+                border: 0!important;
+                border-radius: 8px;
+                box-shadow: 0 4px 4px rgb(0 0 0 / 4%);
+                color: #fff;
+                font-size: 16px;
+                font-weight: var(--e-font-weight-bold);
+                height: 44px;
+                line-height: 22px;
+                width: 180px;
             }
 
 
@@ -368,7 +444,7 @@
                                             <button class="btn btn-primary en-table-search-button" type="button">검 색</button>
                                         </span>
                                     </div>
-                                    <table class="table table-striped en-table">                                  
+                                    <table class="table">                                  
                                     <thead>
                                         <tr class="en-table-header">
                                         <th class="en-landmanagement-table-header-index en-table-header-cell" scope="col">번호</th>
@@ -521,12 +597,12 @@
                                                                                 <ul class="pagination pagination-lg justify-content-start justify-content-center">
                                                                                     <li class="page-item disabled">
                                                                                         <a class="page-link disabled" aria-disabled="true" aria-label="Go to first page" tabindex="-1" disabled="">
-                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPKSURBVHgB7ZpPTttAFMafjREgFnADnK6RgB1ICDu5ALQHaDkBIA7QND1AaTgBHICWXoAYxAKxKZHY467ZuAuEEH/c73PHwZg4uI3d2ohPst6QmYT5zZt5tueNJinUarVsXdeXULQ0TTNhxyVfeb7vn8C27+7udqvVqvPUF7RelQcHB8swdfyoC7uPH3VgXfywKzkJ/0scx+FATWPwpmCXMXhjKDfm5+e3k77XFQQeMA3D+IqOe7gaaUYkL6EvNPbAwEAdduL29rbWbSAfgRweHr5D4w8oNi3L+iwF0dHRkVxeXq4BaAX9WwfMbrT+AQim0hJcuwEvvEbDEymYTk9P5fz8fAbTbAd/NjDQnanWAeF0QoNWUSFChTDwzE50mulhA1RwMjaLDEFNTk7KyMjId0BsYuC/hJ8HIIxOjExFWhO9NDs7K6Ojo00Uf3JN87PQI3VGJymRLi4ufPT5Iy5GM9HUzW4D3piRkun4+FhDJNujE3R1x96WEmpwcNCH2QfDIqfWFIgKvcCT5HmeoO/7KFo6bv/TKJQSRMnl8x89Mo6Q60kJhX7L8PCwi+K4Ls9ELyBF07MBMSQH8QEUjzzBi0StVqt0qaepoM0erI82r6RPZe6RCISZUE8TQpiSkTIFiUEwvldj9TRRiDO0qUkGygykG0T0lTQJIqv3/0xAnoJQyg2C6hskDYRqkxsE1TdICk9E2+QCQb3cEEOpyOTiCqYYp1GPNsE66damX/UNwmmiOnom9zAVFaWibRhmXckJJpOpFeloCMOF/QBG7u8ZruQAk9kaSYKJ1NPkBpPpYk+AidbTPIKRDJR51IrB+F3qaaIwmSiXp191n3jVo56GoBXJSC/3kaLpeYHE4n0pRRDuaZlSQjHfeHV1xXyjx51GV0oKgqQpYaaYAda5d4pNYFtKKCR8BH3nlm+bIEwqWmVcJzc3NxpA3oLhm65SzyYuW0okDvz19bUNCO5dO0HUUomSOlPAZRFSb/TGexSDTFsAAqItmDFEgDVmTYsuDjj6uoLiRJii7twQ4ZU3iGCrTP0WGYZ9Q7ptBv1dxdXZE+uA8EEPKd8G89eEKeI0i+bYAbEe3cR4dIQDi2gJDT8hNm8ivDWZPVVPq/9VHFgsbnphDTOnsbCwsBWtTzxUg4XEF54fTAEj6egYhuHDpWLbNjcT5F8pPFTDYAQ7xiWQ6lBN7EeWVWTwYLcRt9uAaA8NDaVO1c3NzfnyB1IdN3lh8Cx03EZ5QmJnT+JKNbQqF7+IIs9PTQMm7cGzv3IdpjUHypXfZ8RSHTz7BdtOP17BEIgwAAAAAElFTkSuQmCC" alt="">
+                                                                                            <img src="img/btn10Prev.png" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li class="page-item disabled">
                                                                                         <a class="page-link disabled" aria-disabled="true" aria-label="Go to previous page" tabindex="-1" disabled="">
-                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOHSURBVHgB7ZpPTttAFMafjREgFnADTNdIwA4khJ1cANoDtJwAEAdomh6gNJwADkBLL0AMYoHYlEjscdds3AWKovxxvy+MozQkqVt1jB3lk0YzxI6Z37w3b5x5Y0gMlctl1zTNbTQdwzBs1POiV0EYhreoK61W6yyXy3l/+oIx7OLl5eUOqgIe6qO+wEM91D4e7Ism4X+J53kcqBUM3jLqHQzeHNrFjY2Nk0Hf6wsCC9iWZX1FxwOUYpwR0SX0hZU7MTFRQL3QbDbz/QbyGcjV1dU73PwBzZLjOJ8lJbq+vpZqtboPoF307wAwZ93XfwOBK23DtIewwmvceCsp093dnTw8PKzCzU7xZxED3XG1DgjdCTeU0woRKYKBZU673cyMbsAFOmMpzRDU0tKSzMzMfAfEEQb+S/R5G4TRiZEpTXNimNbW1mR2draE5k/OaX4WWaTA6CQZ0uPjY4g+f0RhNBNDLXaHsMaqZEw3NzcGItk5jWCqFftEMqjJyckQ1QUYtuhayyBK9QQfpCAIBH2/QNMxsfyvoJFJECWf73+0yDxCbiAZFPot09PTPprzpoyIxiBp08iAWJKQsPAu4jXoHM0wn8+/kv+sRCzCN2sFYYsmaQdREHyztlHuEfPzokFaQfpB6Pq9rw2kB8LXCUFpAekDkdMJQWkBSRqCGi+Iw0QroPJR2i5GVxPN0gJCV1Iw95IQjDbXUjBcM3x5gjnXCaN1jnRZxkdZ1AmjfbL3gxENSiRq9biZFiX29gsYTvxF0aTxOpI2jRaIygplWgThnpYtGRTzjbVajfnGgDuNvmQUBElTwiwzA2xy7xSbwK5kUEj4CPrOLd8KQZhUdLI4TxqNhgGQt2D4ZqrUs43iSobEga/X6y4guHfttaOWSpQUmALOipB6ozXeo9nOtLVBQHSMag4RYJ9Z07SLA46+7qK5EKWoOwsirPIGEWyPqd80w7BvSLetor97KJ09sg4I31CR8i0yf02YNLpZd44dEAfdmxrPjnBgEm3jxk+IzUcIbyVmT5lQeWlxYDG5aYV9eE5xc3PzuPv6wEM1mEj8AfSDKWAkHT3LskKYVFzX5eaCJKXoUA2DEeo5ToFYh2p6HrKjIkOA+gRxuwKIytTUVOxU3fr6eih/IdVxmwWD56DjLtoL0nP2pFexhlbl4rfQ5PmpFcDEPXj2T6aDW3OgfHk6Ixbr4Nkv+u/djOE0k0kAAAAASUVORK5CYII=" alt="">
+                                                                                            <img src="img/btnPrev.png" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li class="page-item active" aria-current="page">
@@ -546,12 +622,12 @@
                                                                                     </li>
                                                                                     <li class="page-item">
                                                                                         <a class="page-link" aria-label="Go to next page" aria-disabled="false">
-                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOFSURBVHgB7VpNTttAFH42RoBYwA0IXSMBO5AQdnIBaA/QcgJAHKBpeoDScAI4AC29QGIQC8SmRGIfd83GXSCE8uN+X7AjNyTUrfRSO8onWW9IHDPfe2/ejOcbQxKgWq06pmluo2kbhpGDnRdd+EEQ3MDW2u32WT6fd//0A+OlLy8uLnZginioB3uOh7qwHh7siRLwv8R1XTpqBc5bht2B8+bQLm1sbJwM+l1fIohAzrKsr+i4j6uUxCNaQF9onImJiSLsQqvVKvRz5DMil5eX73DzBzTLtm1/lpTg6upKHh4e9kFoF/07AJmz+Pe/EUEqbSO0h4jCa9x4IynD7e2t3N3drSLNTvFnCY7uplqXCNMJN1TTSiJCRAaROY2nmRndgC+YjOU0kyCWlpZkZmbmO0gcwfFfos87RFidWJnSNCZewtramszOzpbR/Mkxzc+iiBRZnSRDuL+/D9Dnj7hYzcQIJ7tDRGNVMobr62sDlazCIJjhjH0iGcTk5GQAcw4OW0ytZTBK9QAfBN/3BX0/R9M2Mf2voJFJIiE8rv8YkXmUXF8yCPRbpqenPTTnTRkRjImkDSNDxBIFVCqVOi2qSV7zJSwOzYjksH6rclUtQ4AKEUYCxpMhklEhwnQaNhm11OpDpqJJRrVq9ZBZ1CSjXn77kREFjOeRJAj3pDqDnRZXHdEpiALUIhKSWOwloTVBqhCJkeB4yMnTO0NBc5bXikgvCfWligqRGIn6sNZbWhHhpkBdO53iUKlahULhlQwZ4xertGG0iIR1P9MgEe5p5SSDoN74+PhIvdHnTqMnGSUC0ZRklqkAm9w7xSawIxkEBB9B37nlWyMRiop2FsdJs9k0QOQtOHwzQ+k5h8uRDIGObzQaDkhw79rtVK1QKClSAs4KIL0xGu/R7ChtHSJgdAwzhwqwT9U07aDD0dddNBciibo7ISIqb1DB9ij9ppkM+wa5bRX93cPVfdvsEuEqFZJvifo1yaQxzeIaO0gcxFfWz45wYBBt48ZPqM1HKG9lqqcUVP436FgMbkZhH5lT2tzcPI5/P/BQDQYSX45+UAKG6OhalhUgpOI4DrdEZViIDtWwGMHOcQgkOlTT85CdsDL4sCeo2zWQqE1NTSWW6tbX1wP5C0Q7L7zgPBsdd9BekJ6zJ71I5NpQi99Ck+enVkAm6cGzfwod0pqO8uTpjFiig2e/AIAr2HTnPze+AAAAAElFTkSuQmCC" alt="">
+                                                                                            <img src="img/btnNext.png" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                     <li class="page-item">
                                                                                         <a class="page-link" aria-label="Go to last page" aria-disabled="false">
-                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOmSURBVHgB7VpNTttQEB4bI0As4AaYrpGAHUgIO7kAtAdoOQEgDtA0PUBpOAEcgJZeIDGIBWJTIrHHXbNxFwghftzvC89RGkh4hediR/kkax7xJMw3M2+e/eZZooFarebbtr2MoWdZlgs5LukiiuP4BLJ+d3e3VygUgqe+YHW7eXBwsAJRwo+GkPv40QAyxA+HkhLwvyQIAjpqBs6bhlyB88YwLi8sLOx0+t6jRBAB13Gc7zA8wlXW8UhagC0U/sDAQAly4vb2tviYIx8QOTw8/ADlTxhWPM/7KhnB0dGRXF5eroPQKuzbAJm91vt/EUEqLSO0m4jCWyieSMZwenoq5+fns0izXfxZhqObqdYkwnSCQi2rJBIkZBCZ3dY0sxMF3GAyVrJMgpiampKRkZGfILEFx39LPm8QYXViZcrSnOiGubk5GR0drWD4m3OanyURKbE6SY5wcXERw+bPuFjNxFKL3SaiMSs5w/HxsYVKVmUQbLVi70gOMTg4GEPsg8MSU2sajDI9wTshiiKB7fsYejaW/xkMcklEIeTzHyMyjpIbSQ4Bu2V4eDjEcNyWHkGfSNbQM0QcMYBqtXpGiepR6PTSpXRi6BTTeDEzGREXz2s1PkV30ZmETvUJnWfBCBFGAiKULmQYCaWTChkjRJgqGmTO0iRjLLWeIsPFS1IkY7RqvSYZ4+X3MTJt9ykekJEXor8gdgLTREXBlXvPF9ruUyRRSHSK8kIYWRCJTga2Ln46Os+FkYi8NgnCVGrpGJgaCcIIER0D0yRBmIoINwF0DEyFBGFksheLxTcaOpOSIvrrSNbQW0RUjc81SIR7Wq7kEOw3Xl1dsd8YcacxlJwSQdOUZKbZAba5d4pNYF9yCDR8BLZzy7dOImwqenmcJzc3NxaIvAeHH7ZqPbu4fMkR6Pjr62sfJLh3HTSqlmqUlNgCzgvQemM0PmLY6LQ1iIDRNsQYKsA6u6ZZBx0OW1cxnEha1M0FEVF5hwq2xtZvlsnQNrTbZmHvGq7mm2WTCJ9I0fIts39NMllMs9YeO0hstD5FPzjCgUm0DMUvqM1bKG8Vdk/Vzsergo7F5GYU1pE55cXFxe3W+x0P1WAi8UXoF1vAaDoGjuPECKn4vs/tT/lfSA7VsBhBjnEKaB2qafuRFVUZIsgd1O06SNSHhoa0W3Xz8/Ox/AOU4S4vOM+D4T7GE9J29qQdWq5VvfglDHl+agZkdA+ePSt0SGs6KpT7M2JaB8/+AH8sN2m2C49wAAAAAElFTkSuQmCC" alt="">
+                                                                                            <img src="img/btn10Next.png" alt="">
                                                                                         </a>
                                                                                     </li>
                                                                                 </ul>
