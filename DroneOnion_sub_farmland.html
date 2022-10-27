@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+        <title>농지 관리</title>
+        </head>
+        <style>
+            * {
+                font-family: "Nanum Gothic", sans-serif;
+            }
+
+            /* 헤더 */
+
+            .header {
+                height: 100px;
+                border-right: 1px solid #c2c2c2;
+            }
+
+            .header-logo-image {
+                height: 46px;
+                left: 27px;
+                position: absolute;
+                top: 17px;
+                width: 39px;
+            }
+
+            .header-box {
+                margin-top: 15px;
+                margin-left: 80px;
+                line-height: 0.1rem;
+            }
+
+            .header-title1 {
+                color: black;
+                font-size: 20px;
+                line-height: 24px;
+                font-weight: bold;
+            }
+
+            .header-title2 {
+                color: black;
+                font-size: 19px;
+            }
+
+            /* 사이드바 */
+
+            .sidebar {
+                height: 860px;
+                border-right: 1px solid #c2c2c2;
+                width: 400px;
+            }
+
+            /* .active {
+                background: #ffeccf;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+            } */
+
+            .nav-link {
+                color: #ce7d00 !important;
+                font-size: 18px;
+                line-height: 25px;
+                opacity: 0.5;
+            }
+
+            .menu-text {
+                color: #a5a5a5;
+                font-weight: bold;
+                margin-left: 20px;
+            }
+
+            .top-menu {
+                justify-items: center;
+                background-color: #ec994b;
+                height: 4rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                box-shadow: 0 2px 2px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.14),
+                    0 3px 1px -2px rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.12),
+                    0 1px 5px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.2);
+            }
+
+            .nav-icon {
+                color: #fff;
+                margin-left: 10px;
+                font-size: 1.25rem;
+                height: 1.25rem;
+                text-align: center;
+                transition: inherit;
+                object-fit: contain;
+                margin-right: 1rem;
+            }
+
+            .header-profile-icon {
+                margin-right: 11px;
+            }
+
+            .header-user {
+                align-items: center;
+                color: #fff;
+                display: flex;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                background-color: transparent;
+                border: 0;
+                border-radius: 0.25rem;
+                margin-left: 1200px;
+            }
+
+            .header-logout-icon {
+                vertical-align: middle;
+                height: 24px;
+                margin-right: 7px;
+                margin-top: 3px;
+                width: 26px;
+            }
+
+            .btn.header-logout {
+                background-color: #fff;
+                display: flex;
+                height: 44px;
+                margin-right: 32px;
+                margin-top: 10px;
+                width: 140px;
+                border-radius: 8px;
+                line-height: 22px;
+                font-size: 16px;
+            }
+
+            .header-logout-label {
+                align-items: center;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-top: 6px;
+            }
+
+            /* 지도 */
+
+            #map {
+                height: 850px;
+                width: 100%;
+            }
+
+            #map-button1 {
+                font-size: 17px;
+                position: absolute;
+                top: 20%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #map-button2 {
+                font-size: 17px;
+                position: absolute;
+                top: 25%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #map-button3 {
+                font-size: 17px;
+                position: absolute;
+                top: 30%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            .map-form-control {
+                z-index: 10;
+                position: absolute;
+                top: 100px;
+                left: 380px;
+                width: 500px;
+                background-color: #ec994b;
+                color: #fff;
+            }
+
+            /* content */
+
+            .en-defaultlayout-appcontent {
+                background-color: #f9f9f9;
+            }
+
+            .en-table-top-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .en-table-total-count-label {
+                color: rgba(0,0,0,.8);
+                font-size: 18px;
+                line-height: 25px;
+            }
+
+            .en-table-total-count {
+                color: #ce7d00;
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 41px;
+            }
+
+            .en-table-search-container {
+                display: flex;
+            }
+
+            .en-table-search-icon {
+                background-color: #fff;
+                text-align: center;
+            }
+
+            .en-table-search-button {
+                background: #ec994b!important;
+                border-radius: 8px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 44px;
+                line-height: 22px;
+                margin-left: 9px;
+                text-align: center;
+                width: 120px!important;
+            }
+
+            .en-table-container {
+                margin: 0;
+                max-width: 100%;
+                padding: 27px 56px 97px;
+            }
+
+            .en-table {
+                background: #fff;
+                border-radius: 14px 14px 14px 14px;
+                margin-top: 25px;
+            }
+
+            .en-table-header {
+                color: #000!important;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+
+            </style>
+            <body>
+                <div class="row g-0">
+                    <div class="col-md-2 header">
+                        <div class="col header-box">
+                            <img class="header-logo-image" src="img/onion.png" />
+                            <p class="header-title1">스마트 드론 <br /></p>
+                            <p class="header-title2">생육 데이터 서비스</p>
+                        </div>
+                    </div>
+                    <div class="col-md-10 top-menu">
+                        <button type="button" class="header-toggler px-md-0 me-md-3 header-user">
+                            <img class="header-profile-icon" src="img/icon_user2.png" />홍길동 님 반갑습니다.
+                        </button>
+                        <button class="btn header-logout" type="button">
+                            <img class="header-logout-icon" src="img/icon_logout.png" />
+                            <div class="header-logout-label">로그아웃</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-md-2 sidebar">
+                        <p class="menu-text">메뉴</p>
+                        <ul class="nav flex-column sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    <img class="nav-icon" src="img/icon_dashboard 2.png" width="26" height="23" />
+                                    <span data-feather="file" class="align-text-bottom"></span>
+                                    대시보드
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_farm2.png" width="26" height="23" />
+                                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                                    농지 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_user2.png" width="26" height="23" />
+                                    <span data-feather="users" class="align-text-bottom"></span>
+                                    사용자 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_status2.png" width="26" height="23" />
+                                    <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+                                    사용자 이용 현황
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_bug2.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    병해충 목록
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_piclist2.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    사진 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_weather.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    주산지 기상정보
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_market.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    시세 정보
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-10 en-defaultlayout-appcontent">
+                        <div class="en-appcontent-container">
+                            <div class="en-default-container">
+                                <div class="en-table-container">
+                                    <div class="en-table-top-container">
+                                        <span>
+                                        <span class="en-table-total-count-label">총</span>
+                                        <span class="en-table-total-count"> 325 </span>
+                                        <span class="en-table-total-count-label">건</span>
+                                    </span>
+                                    <span class="en-table-search-container">
+                                        <form class="">
+                                            <div class="input-group">
+                                            <span class="input-group-text en-table-search-icon">
+                                                <img class="" src="img/search.png"></span>
+                                                <input class="form-control en-table-search-box" id="searchWord" type="text" placeholder="사용자 / 농지 입력">
+                                            </div>
+                                            </form>
+                                            <button class="btn btn-primary en-table-search-button" type="button">검 색</button>
+                                        </span>
+                                    </div>
+                                    <table class="table table-striped en-table">                                  
+                                    <thead>
+                                        <tr class="en-table-header">
+                                        <th class="en-landmanagement-table-header-index en-table-header-cell" scope="col">번호</th>
+                                        <th class="en-landmanagement-table-header-name en-table-header-cell" scope="col">이름</th>
+                                        <th class="en-landmanagement-table-header-phone en-table-header-cell" scope="col">전화번호</th>
+                                        <th class="en-landmanagement-table-header-address en-table-header-cell" scope="col">농지주소</th>
+                                        <th class="en-landmanagement-table-header-farmmapaddress en-table-header-cell" scope="col">팜맵주소</th>
+                                        <th class="en-landmanagement-table-header-crop en-table-header-cell" scope="col">재배품종</th>
+                                        <th class="en-landmanagement-table-header-area en-table-header-cell" scope="col">면적(m<sup>2</sup>)</th>
+                                        <th class="en-landmanagement-table-header-etc en-table-header-cell" scope="col">정보수정</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="en-table-row">
+                                        <td class="en-table-cell">1</td>
+                                        <td class="en-table-cell">홍석호</td>
+                                        <td class="en-table-cell">010-2605-7359</td>
+                                        <td class="en-table-cell">전라남도 무안군 해제면 신정리 409-3</td>
+                                        <td class="en-table-cell">전라남도 무안군 해제면 신정리 409-4전</td>
+                                        <td class="en-table-cell">없음</td>
+                                        <td class="en-table-cell">1,878</td>
+                                        <td class="en-table-cell">
+                                            <button class="en-table-edit-button">수정</button>
+                                            <button class="en-table-delete-button">삭제</button>
+                                        </td>
+                                    </tr>
+                                        <tr class="en-table-row">
+                                            <td class="en-table-cell">2</td>
+                                            <td class="en-table-cell">홍석호</td>
+                                            <td class="en-table-cell">010-2605-7359</td>
+                                            <td class="en-table-cell">전라남도 무안군 해제면 신정리 409-2</td>
+                                            <td class="en-table-cell">전라남도 무안군 해제면 신정리 408전</td>
+                                            <td class="en-table-cell">없음</td>
+                                            <td class="en-table-cell">1,802</td>
+                                            <td class="en-table-cell">
+                                                <button class="en-table-edit-button">수정</button>
+                                                <button class="en-table-delete-button">삭제</button>
+                                            </td>
+                                        </tr>
+                                            <tr class="en-table-row">
+                                                <td class="en-table-cell">3</td>
+                                                <td class="en-table-cell">여규환</td>
+                                                <td class="en-table-cell">010-2880-3804</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 송석리 890-5</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 송석리 889-3답</td>
+                                                <td class="en-table-cell">없음</td>
+                                                <td class="en-table-cell">2,111</td>
+                                                <td class="en-table-cell">
+                                                    <button class="en-table-edit-button">수정</button>
+                                                    <button class="en-table-delete-button">삭제</button>
+                                                </td>
+                                                </tr>
+                                                <tr class="en-table-row">
+                                                    <td class="en-table-cell">4</td>
+                                                    <td class="en-table-cell">여규환</td>
+                                                    <td class="en-table-cell">010-2880-3804</td>
+                                                    <td class="en-table-cell">전라남도 무안군 해제면 송석리 894-5</td>
+                                                    <td class="en-table-cell">전라남도 무안군 해제면 송석리 894-6전</td>
+                                                    <td class="en-table-cell">없음</td>
+                                                    <td class="en-table-cell">2,954</td>
+                                                    <td class="en-table-cell">
+                                                        <button class="en-table-edit-button">수정</button>
+                                                        <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                                    <tr class="en-table-row">
+                                                        <td class="en-table-cell">5</td>
+                                                        <td class="en-table-cell">강경석</td>
+                                                        <td class="en-table-cell">010-4605-8328</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 용학리 538-105</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 용학리 538-138잡</td>
+                                                        <td class="en-table-cell">없음</td>
+                                                        <td class="en-table-cell">4,349</td>
+                                                        <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="en-table-row">
+                                                        <td class="en-table-cell">6</td>
+                                                        <td class="en-table-cell">박주안</td>
+                                                        <td class="en-table-cell">010-6287-7775</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 양매리 351-1</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 양매리 349-1대</td>
+                                                        <td class="en-table-cell">없음</td>
+                                                        <td class="en-table-cell">5,397</td>
+                                                        <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="en-table-row">
+                                                        <td class="en-table-cell">7</td>
+                                                        <td class="en-table-cell">홍대필</td>
+                                                        <td class="en-table-cell">010-2638-0762</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 덕산리 575-2</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 덕산리 520전</td>
+                                                        <td class="en-table-cell">없음</td>
+                                                        <td class="en-table-cell">2,945</td>
+                                                        <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="en-table-row">
+                                                        <td class="en-table-cell">8</td>
+                                                        <td class="en-table-cell">채희남</td>
+                                                        <td class="en-table-cell">010-8625-7376</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 광산리 278-1</td>
+                                                        <td class="en-table-cell">전라남도 무안군 해제면 광산리 277전</td>
+                                                        <td class="en-table-cell">없음</td>
+                                                        <td class="en-table-cell">3,041</td>
+                                                        <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                        </td>
+                                                    </tr>
+                                                        <tr class="en-table-row">
+                                                            <td class="en-table-cell">9</td>
+                                                            <td class="en-table-cell">채희남</td>
+                                                            <td class="en-table-cell">010-8625-7376</td>
+                                                            <td class="en-table-cell">전라남도 무안군 해제면 광산리 251-1</td>
+                                                            <td class="en-table-cell">전라남도 무안군 해제면 광산리 248전</td>
+                                                            <td class="en-table-cell">없음</td>
+                                                            <td class="en-table-cell">1,082</td>
+                                                            <td class="en-table-cell"><button class="en-table-edit-button">수정</button>
+                                                                <button class="en-table-delete-button">삭제</button>
+                                                            </td>
+                                                        </tr>
+                                                            <tr class="en-table-row">
+                                                                <td class="en-table-cell-disable">10</td>
+                                                                <td class="en-table-cell-disable">이장원</td>
+                                                                <td class="en-table-cell-disable">010-9473-7768</td>
+                                                                <td class="en-table-cell-disable">전라남도 무안군 해제면 산길리 264</td>
+                                                                <td class="en-table-cell-disable">전라남도 무안군 해제면 산길리 816-10목</td>
+                                                                <td class="en-table-cell-disable">없음</td>
+                                                                <td class="en-table-cell-disable">2,309</td>
+                                                                <td class="en-table-cell-disable">
+                                                                    <button class="en-table-edit-button">수정</button>
+                                                                    <button class="en-table-delete-button">삭제</button>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                            </table>
+                                                                <div class="en-bottom-container">
+                                                                    <div class="row">
+                                                                        <div class="col-2"> </div>
+                                                                        <div class="col-8">
+                                                                            <nav aria-label="pagination">
+                                                                                <ul class="pagination pagination-lg justify-content-start justify-content-center">
+                                                                                    <li class="page-item disabled">
+                                                                                        <a class="page-link disabled" aria-disabled="true" aria-label="Go to first page" tabindex="-1" disabled="">
+                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAPKSURBVHgB7ZpPTttAFMafjREgFnADnK6RgB1ICDu5ALQHaDkBIA7QND1AaTgBHICWXoAYxAKxKZHY467ZuAuEEH/c73PHwZg4uI3d2ohPst6QmYT5zZt5tueNJinUarVsXdeXULQ0TTNhxyVfeb7vn8C27+7udqvVqvPUF7RelQcHB8swdfyoC7uPH3VgXfywKzkJ/0scx+FATWPwpmCXMXhjKDfm5+e3k77XFQQeMA3D+IqOe7gaaUYkL6EvNPbAwEAdduL29rbWbSAfgRweHr5D4w8oNi3L+iwF0dHRkVxeXq4BaAX9WwfMbrT+AQim0hJcuwEvvEbDEymYTk9P5fz8fAbTbAd/NjDQnanWAeF0QoNWUSFChTDwzE50mulhA1RwMjaLDEFNTk7KyMjId0BsYuC/hJ8HIIxOjExFWhO9NDs7K6Ojo00Uf3JN87PQI3VGJymRLi4ufPT5Iy5GM9HUzW4D3piRkun4+FhDJNujE3R1x96WEmpwcNCH2QfDIqfWFIgKvcCT5HmeoO/7KFo6bv/TKJQSRMnl8x89Mo6Q60kJhX7L8PCwi+K4Ls9ELyBF07MBMSQH8QEUjzzBi0StVqt0qaepoM0erI82r6RPZe6RCISZUE8TQpiSkTIFiUEwvldj9TRRiDO0qUkGygykG0T0lTQJIqv3/0xAnoJQyg2C6hskDYRqkxsE1TdICk9E2+QCQb3cEEOpyOTiCqYYp1GPNsE66damX/UNwmmiOnom9zAVFaWibRhmXckJJpOpFeloCMOF/QBG7u8ZruQAk9kaSYKJ1NPkBpPpYk+AidbTPIKRDJR51IrB+F3qaaIwmSiXp191n3jVo56GoBXJSC/3kaLpeYHE4n0pRRDuaZlSQjHfeHV1xXyjx51GV0oKgqQpYaaYAda5d4pNYFtKKCR8BH3nlm+bIEwqWmVcJzc3NxpA3oLhm65SzyYuW0okDvz19bUNCO5dO0HUUomSOlPAZRFSb/TGexSDTFsAAqItmDFEgDVmTYsuDjj6uoLiRJii7twQ4ZU3iGCrTP0WGYZ9Q7ptBv1dxdXZE+uA8EEPKd8G89eEKeI0i+bYAbEe3cR4dIQDi2gJDT8hNm8ivDWZPVVPq/9VHFgsbnphDTOnsbCwsBWtTzxUg4XEF54fTAEj6egYhuHDpWLbNjcT5F8pPFTDYAQ7xiWQ6lBN7EeWVWTwYLcRt9uAaA8NDaVO1c3NzfnyB1IdN3lh8Cx03EZ5QmJnT+JKNbQqF7+IIs9PTQMm7cGzv3IdpjUHypXfZ8RSHTz7BdtOP17BEIgwAAAAAElFTkSuQmCC" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="page-item disabled">
+                                                                                        <a class="page-link disabled" aria-disabled="true" aria-label="Go to previous page" tabindex="-1" disabled="">
+                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOHSURBVHgB7ZpPTttAFMafjREgFnADTNdIwA4khJ1cANoDtJwAEAdomh6gNJwADkBLL0AMYoHYlEjscdds3AWKovxxvy+MozQkqVt1jB3lk0YzxI6Z37w3b5x5Y0gMlctl1zTNbTQdwzBs1POiV0EYhreoK61W6yyXy3l/+oIx7OLl5eUOqgIe6qO+wEM91D4e7Ism4X+J53kcqBUM3jLqHQzeHNrFjY2Nk0Hf6wsCC9iWZX1FxwOUYpwR0SX0hZU7MTFRQL3QbDbz/QbyGcjV1dU73PwBzZLjOJ8lJbq+vpZqtboPoF307wAwZ93XfwOBK23DtIewwmvceCsp093dnTw8PKzCzU7xZxED3XG1DgjdCTeU0woRKYKBZU673cyMbsAFOmMpzRDU0tKSzMzMfAfEEQb+S/R5G4TRiZEpTXNimNbW1mR2draE5k/OaX4WWaTA6CQZ0uPjY4g+f0RhNBNDLXaHsMaqZEw3NzcGItk5jWCqFftEMqjJyckQ1QUYtuhayyBK9QQfpCAIBH2/QNMxsfyvoJFJECWf73+0yDxCbiAZFPot09PTPprzpoyIxiBp08iAWJKQsPAu4jXoHM0wn8+/kv+sRCzCN2sFYYsmaQdREHyztlHuEfPzokFaQfpB6Pq9rw2kB8LXCUFpAekDkdMJQWkBSRqCGi+Iw0QroPJR2i5GVxPN0gJCV1Iw95IQjDbXUjBcM3x5gjnXCaN1jnRZxkdZ1AmjfbL3gxENSiRq9biZFiX29gsYTvxF0aTxOpI2jRaIygplWgThnpYtGRTzjbVajfnGgDuNvmQUBElTwiwzA2xy7xSbwK5kUEj4CPrOLd8KQZhUdLI4TxqNhgGQt2D4ZqrUs43iSobEga/X6y4guHfttaOWSpQUmALOipB6ozXeo9nOtLVBQHSMag4RYJ9Z07SLA46+7qK5EKWoOwsirPIGEWyPqd80w7BvSLetor97KJ09sg4I31CR8i0yf02YNLpZd44dEAfdmxrPjnBgEm3jxk+IzUcIbyVmT5lQeWlxYDG5aYV9eE5xc3PzuPv6wEM1mEj8AfSDKWAkHT3LskKYVFzX5eaCJKXoUA2DEeo5ToFYh2p6HrKjIkOA+gRxuwKIytTUVOxU3fr6eih/IdVxmwWD56DjLtoL0nP2pFexhlbl4rfQ5PmpFcDEPXj2T6aDW3OgfHk6Ixbr4Nkv+u/djOE0k0kAAAAASUVORK5CYII=" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="page-item active" aria-current="page">
+                                                                                        <span class="page-link">1</span>
+                                                                                    </li>
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" aria-label="Go to page 2">2</a>
+                                                                                    </li>
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" aria-label="Go to page 3">3</a>
+                                                                                    </li>
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" aria-label="Go to page 4">4</a>
+                                                                                    </li>
+                                                                                    <li class="page-item disabled">
+                                                                                        <a class="page-link disabled" aria-disabled="true" tabindex="-1" disabled="" role="separator">…</a>
+                                                                                    </li>
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" aria-label="Go to next page" aria-disabled="false">
+                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOFSURBVHgB7VpNTttAFH42RoBYwA0IXSMBO5AQdnIBaA/QcgJAHKBpeoDScAI4AC29QGIQC8SmRGIfd83GXSCE8uN+X7AjNyTUrfRSO8onWW9IHDPfe2/ejOcbQxKgWq06pmluo2kbhpGDnRdd+EEQ3MDW2u32WT6fd//0A+OlLy8uLnZginioB3uOh7qwHh7siRLwv8R1XTpqBc5bht2B8+bQLm1sbJwM+l1fIohAzrKsr+i4j6uUxCNaQF9onImJiSLsQqvVKvRz5DMil5eX73DzBzTLtm1/lpTg6upKHh4e9kFoF/07AJmz+Pe/EUEqbSO0h4jCa9x4IynD7e2t3N3drSLNTvFnCY7uplqXCNMJN1TTSiJCRAaROY2nmRndgC+YjOU0kyCWlpZkZmbmO0gcwfFfos87RFidWJnSNCZewtramszOzpbR/Mkxzc+iiBRZnSRDuL+/D9Dnj7hYzcQIJ7tDRGNVMobr62sDlazCIJjhjH0iGcTk5GQAcw4OW0ytZTBK9QAfBN/3BX0/R9M2Mf2voJFJIiE8rv8YkXmUXF8yCPRbpqenPTTnTRkRjImkDSNDxBIFVCqVOi2qSV7zJSwOzYjksH6rclUtQ4AKEUYCxpMhklEhwnQaNhm11OpDpqJJRrVq9ZBZ1CSjXn77kREFjOeRJAj3pDqDnRZXHdEpiALUIhKSWOwloTVBqhCJkeB4yMnTO0NBc5bXikgvCfWligqRGIn6sNZbWhHhpkBdO53iUKlahULhlQwZ4xertGG0iIR1P9MgEe5p5SSDoN74+PhIvdHnTqMnGSUC0ZRklqkAm9w7xSawIxkEBB9B37nlWyMRiop2FsdJs9k0QOQtOHwzQ+k5h8uRDIGObzQaDkhw79rtVK1QKClSAs4KIL0xGu/R7ChtHSJgdAwzhwqwT9U07aDD0dddNBciibo7ISIqb1DB9ij9ppkM+wa5bRX93cPVfdvsEuEqFZJvifo1yaQxzeIaO0gcxFfWz45wYBBt48ZPqM1HKG9lqqcUVP436FgMbkZhH5lT2tzcPI5/P/BQDQYSX45+UAKG6OhalhUgpOI4DrdEZViIDtWwGMHOcQgkOlTT85CdsDL4sCeo2zWQqE1NTSWW6tbX1wP5C0Q7L7zgPBsdd9BekJ6zJ71I5NpQi99Ck+enVkAm6cGzfwod0pqO8uTpjFiig2e/AIAr2HTnPze+AAAAAElFTkSuQmCC" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="page-item">
+                                                                                        <a class="page-link" aria-label="Go to last page" aria-disabled="false">
+                                                                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOmSURBVHgB7VpNTttQEB4bI0As4AaYrpGAHUgIO7kAtAdoOQEgDtA0PUBpOAEcgJZeIDGIBWJTIrHHXbNxFwghftzvC89RGkh4hediR/kkax7xJMw3M2+e/eZZooFarebbtr2MoWdZlgs5LukiiuP4BLJ+d3e3VygUgqe+YHW7eXBwsAJRwo+GkPv40QAyxA+HkhLwvyQIAjpqBs6bhlyB88YwLi8sLOx0+t6jRBAB13Gc7zA8wlXW8UhagC0U/sDAQAly4vb2tviYIx8QOTw8/ADlTxhWPM/7KhnB0dGRXF5eroPQKuzbAJm91vt/EUEqLSO0m4jCWyieSMZwenoq5+fns0izXfxZhqObqdYkwnSCQi2rJBIkZBCZ3dY0sxMF3GAyVrJMgpiampKRkZGfILEFx39LPm8QYXViZcrSnOiGubk5GR0drWD4m3OanyURKbE6SY5wcXERw+bPuFjNxFKL3SaiMSs5w/HxsYVKVmUQbLVi70gOMTg4GEPsg8MSU2sajDI9wTshiiKB7fsYejaW/xkMcklEIeTzHyMyjpIbSQ4Bu2V4eDjEcNyWHkGfSNbQM0QcMYBqtXpGiepR6PTSpXRi6BTTeDEzGREXz2s1PkV30ZmETvUJnWfBCBFGAiKULmQYCaWTChkjRJgqGmTO0iRjLLWeIsPFS1IkY7RqvSYZ4+X3MTJt9ykekJEXor8gdgLTREXBlXvPF9ruUyRRSHSK8kIYWRCJTga2Ln46Os+FkYi8NgnCVGrpGJgaCcIIER0D0yRBmIoINwF0DEyFBGFksheLxTcaOpOSIvrrSNbQW0RUjc81SIR7Wq7kEOw3Xl1dsd8YcacxlJwSQdOUZKbZAba5d4pNYF9yCDR8BLZzy7dOImwqenmcJzc3NxaIvAeHH7ZqPbu4fMkR6Pjr62sfJLh3HTSqlmqUlNgCzgvQemM0PmLY6LQ1iIDRNsQYKsA6u6ZZBx0OW1cxnEha1M0FEVF5hwq2xtZvlsnQNrTbZmHvGq7mm2WTCJ9I0fIts39NMllMs9YeO0hstD5FPzjCgUm0DMUvqM1bKG8Vdk/Vzsergo7F5GYU1pE55cXFxe3W+x0P1WAi8UXoF1vAaDoGjuPECKn4vs/tT/lfSA7VsBhBjnEKaB2qafuRFVUZIsgd1O06SNSHhoa0W3Xz8/Ox/AOU4S4vOM+D4T7GE9J29qQdWq5VvfglDHl+agZkdA+ePSt0SGs6KpT7M2JaB8/+AH8sN2m2C49wAAAAAElFTkSuQmCC" alt="">
+                                                                                        </a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </nav>
+                                                                        </div>
+                                                                        <div class="col-2" style="text-align: right;">
+                                                                            <button class="btn btn-primary en-table-regi-button" type="button">농지 등록</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                <link
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                        crossorigin="anonymous"
+                    />
+
+                    <script
+                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                        crossorigin="anonymous"
+                    ></script>
+</body>
+</html>
