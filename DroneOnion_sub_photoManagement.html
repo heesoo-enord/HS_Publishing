@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+        <title>사진 관리</title>
+        </head>
+        <style>
+            * {
+                font-family: "Nanum Gothic", sans-serif;
+            }
+
+            /* 헤더 */
+
+            .header {
+                height: 100px;
+                border-right: 1px solid #c2c2c2;
+            }
+
+            .header-logo-image {
+                height: 46px;
+                left: 27px;
+                position: absolute;
+                top: 17px;
+                width: 39px;
+            }
+
+            .header-box {
+                margin-top: 15px;
+                margin-left: 80px;
+                line-height: 0.1rem;
+            }
+
+            .header-title1 {
+                color: black;
+                font-size: 20px;
+                line-height: 24px;
+                font-weight: bold;
+            }
+
+            .header-title2 {
+                color: black;
+                font-size: 19px;
+            }
+
+            /* 사이드바 */
+
+            .sidebar {
+                height: 860px;
+                border-right: 1px solid #c2c2c2;
+                width: 400px;
+            }
+
+            /* .active {
+                background: #ffeccf;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+            } */
+
+            .nav-link {
+                color: #ce7d00 !important;
+                font-size: 18px;
+                line-height: 25px;
+                opacity: 0.5;
+            }
+
+            .menu-text {
+                color: #a5a5a5;
+                font-weight: bold;
+                margin-left: 20px;
+            }
+
+            .top-menu {
+                justify-items: center;
+                background-color: #ec994b;
+                height: 4rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                box-shadow: 0 2px 2px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.14),
+                    0 3px 1px -2px rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.12),
+                    0 1px 5px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.2);
+            }
+
+            .nav-icon {
+                color: #fff;
+                margin-left: 10px;
+                font-size: 1.25rem;
+                height: 1.25rem;
+                text-align: center;
+                transition: inherit;
+                object-fit: contain;
+                margin-right: 1rem;
+            }
+
+            .header-profile-icon {
+                margin-right: 11px;
+            }
+
+            .header-user {
+                align-items: center;
+                color: #fff;
+                display: flex;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                background-color: transparent;
+                border: 0;
+                border-radius: 0.25rem;
+                margin-left: 1200px;
+            }
+
+            .header-logout-icon {
+                vertical-align: middle;
+                height: 24px;
+                margin-right: 7px;
+                margin-top: 3px;
+                width: 26px;
+            }
+
+            .btn.header-logout {
+                background-color: #fff;
+                display: flex;
+                height: 44px;
+                margin-right: 32px;
+                margin-top: 10px;
+                width: 140px;
+                border-radius: 8px;
+                line-height: 22px;
+                font-size: 16px;
+            }
+
+            .header-logout-label {
+                align-items: center;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-top: 6px;
+            }
+
+            /* 지도 */
+
+            #map {
+                height: 850px;
+                width: 100%;
+            }
+
+            #map-button1 {
+                font-size: 17px;
+                position: absolute;
+                top: 20%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #map-button2 {
+                font-size: 17px;
+                position: absolute;
+                top: 25%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #map-button3 {
+                font-size: 17px;
+                position: absolute;
+                top: 30%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            .map-form-control {
+                z-index: 10;
+                position: absolute;
+                top: 100px;
+                left: 380px;
+                width: 500px;
+                background-color: #ec994b;
+                color: #fff;
+            }
+
+            /* content */
+
+            .en-defaultlayout-appcontent {
+                background-color: #f9f9f9;
+            }
+
+            .en-table-top-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .en-table-total-count-label {
+                color: rgba(0,0,0,.8);
+                font-size: 18px;
+                line-height: 25px;
+            }
+
+            .en-table-total-count {
+                color: #ce7d00;
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 41px;
+            }
+
+            .en-table-search-container {
+                display: flex;
+            }
+
+            .en-table-search-icon {
+                background-color: #fff;
+                text-align: center;
+            }
+
+            .en-table-search-button {
+                background: #ec994b!important;
+                border-radius: 8px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 44px;
+                line-height: 22px;
+                margin-left: 9px;
+                text-align: center;
+                width: 120px!important;
+                border: 0!important;
+            }
+
+            .en-table-container {
+                margin: 0;
+                max-width: 100%;
+                padding: 0px 56px 97px;
+            }
+
+            .en-table-header {
+                color: #000!important;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: none;
+            }
+
+            .table {
+                background-color: #fff;
+                margin-top: 25px;
+                border-radius: 14px 14px 14px 14px;
+            }
+
+            .en-table-row {
+                color: #000!important;
+                height: 56px;
+                line-height: 22px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .en-table-edit-button {
+                background-color: #ec994b;
+                border-radius: 8px;
+                border-width: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 40px;
+                line-height: 22px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                width: 65px;
+            }
+
+            .en-table-delete-button {
+                background-color: #ff4646;
+                border-radius: 8px;
+                border-width: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 40px;
+                line-height: 22px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                width: 65px;
+            }
+
+            .en-bottom-container {
+                margin-top: 20px;
+            }
+
+            .page-item.disabled .page-link {
+                background: none;
+            }
+
+            .page-link {
+                background: transparent;
+                color: #202020!important;
+                border-width: 1px;
+                display: table-cell!important;
+                font-size: 18px;
+                height: 50px;
+                margin: 0 5px!important;
+                padding: 0!important;
+                text-align: center;
+                vertical-align: middle;
+                width: 50px;
+                border-radius: 14px;
+                font-weight: thin;
+                line-height: 25px;
+            }
+
+            .page-link {
+                background-color: #ec994b;
+            }
+
+            .en-table-regi-button {
+                background: #ec994b!important;
+                border: 0!important;
+                border-radius: 8px;
+                box-shadow: 0 4px 4px rgb(0 0 0 / 4%);
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 44px;
+                line-height: 22px;
+                width: 180px;
+            }
+
+            .page-item.active .page-link {
+                background-color: #ec994b!important;
+                border-width: 0;
+                box-shadow: 0 7px 16px rgb(0 0 0 / 14%);
+                color: #fff!important;
+                font-size: 18px!important;
+                margin: 0 5px;
+            }
+
+            .en-search-label, .en-search-date-label {
+                align-items: center;
+                color: #202020;
+                display: flex;                
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-left: 25px;
+                margin-right: 8px;
+            }
+            
+            .form-select {
+                display: block;
+                width: 100px;
+                padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+                -moz-padding-start: calc(0.75rem - 3px);
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #212529;
+            }
+
+            .form-control, .en-search-user-input, .en-search-date-monthbox, .en-search-date-yearbox {
+                width: 124px!important;
+                height: 44px!important;
+            }
+
+            .en-photomanagement-search-address-input {
+                width: 200px!important;
+                height: 44px!important;
+            }
+
+            .thead {
+                border-bottom: none;
+            }
+
+            </style>
+            <body>
+                <div class="row g-0">
+                    <div class="col-md-2 header">
+                        <div class="col header-box">
+                            <img class="header-logo-image" src="img/onion.png" />
+                            <p class="header-title1">스마트 드론 <br /></p>
+                            <p class="header-title2">생육 데이터 서비스</p>
+                        </div>
+                    </div>
+                    <div class="col-md-10 top-menu">
+                        <button type="button" class="header-toggler px-md-0 me-md-3 header-user">
+                            <img class="header-profile-icon" src="img/icon_user2.png" />홍길동 님 반갑습니다.
+                        </button>
+                        <button class="btn header-logout" type="button">
+                            <img class="header-logout-icon" src="img/icon_logout.png" />
+                            <div class="header-logout-label">로그아웃</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-md-2 sidebar">
+                        <p class="menu-text">메뉴</p>
+                        <ul class="nav flex-column sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="DroneOnion_sub_new1-1.html">
+                                    <img class="nav-icon" src="img/icon_dashboard 2.png" width="26" height="23" />
+                                    <span data-feather="file" class="align-text-bottom"></span>
+                                    대시보드
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_farmland.html">
+                                    <img class="nav-icon" src="img/icon_farm2.png" width="26" height="23" />
+                                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                                    농지 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_userManagement.html">
+                                    <img class="nav-icon" src="img/icon_user2.png" width="26" height="23" />
+                                    <span data-feather="users" class="align-text-bottom"></span>
+                                    사용자 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_userLog.html">
+                                    <img class="nav-icon" src="img/icon_status2.png" width="26" height="23" />
+                                    <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+                                    사용자 이용 현황
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_pests.html">
+                                    <img class="nav-icon" src="img/icon_bug2.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    병해충 목록
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_photoManagement.html">
+                                    <img class="nav-icon" src="img/icon_piclist2.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    사진 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_weather.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    주산지 기상정보
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_market.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    시세 정보
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-10 en-defaultlayout-appcontent">
+                        <div class="en-appcontent-container">
+                            <div class="en-default-container">
+                                <div class="en-table-container">
+                                    <div class="en-table-top-container">
+                                        <span>
+                                        <span class="en-table-total-count-label">총</span>
+                                        <span class="en-table-total-count"> 103417 </span>
+                                        <span class="en-table-total-count-label">건</span>
+                                    </span>
+                                    <div class="en-table-search-container">
+                                        <span class="en-search-label">주소</span>
+                                        <input class="form-control en-search-user-input en-photomanagement-search-address-input" id="searchAddress" type="text" placeholder="주소">
+                                        <span class="en-search-label">등록주차</span>
+                                        <select class="form-select en-search-date-yearbox" name="selectedYear">
+                                            <option value="0">--</option>
+                                            <option value="2022">2022</option>
+                                        </select>
+                                        <span class="en-search-date-label">년</span>
+                                        <select class="form-select en-search-date-monthbox" name="selectedMonth">
+                                            <option value="0">--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        <span class="en-search-date-label">월</span>
+                                        <select class="form-select en-search-date-monthbox" name="selectedWeekNum">
+                                            <option value="0">--</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <span class="en-search-date-label">주차</span>
+                                        <span class="en-search-label">사진태그</span>
+                                        <select class="form-select en-search-user-input en-photomanagement-search-confirm-type">
+                                            <option value="0">전체조회</option>
+                                            <option value="1">RGB</option>
+                                            <option value="2">NDVI</option>
+                                            <option value="3">PEST</option>
+                                        </select>
+                                        <span>
+                                            <button class="btn btn-primary en-table-search-button en-pests-search-button" type="button">검 색</button>
+                                        </span>
+                                    </div>
+                                    </div>
+                                    <table class="table table-hover">
+                                    <thead>                                  
+                                        <tr class="en-table-header">
+                                            <th class="en-table-header-cell en-photomanagement-table-header-index" scope="col">번호</th>
+                                            <th class="en-table-header-cell en-photomanagement-table-header-address" scope="col">신고 대상 농지</th>
+                                            <th class="en-table-header-cell en-photomanagement-table-header-photo" scope="col">사진</th>
+                                            <th class="en-table-header-cell en-photomanagement-table-header-weeknum" scope="col">등록 주차</th>
+                                            <th class="en-table-header-cell en-photomanagement-table-header-date" scope="col">사진 등록일시</th>
+                                            <th class="en-table-header-cell en-photomanagement-table-header-tag " scope="col">사진 태그</th>
+                                            <th class="en-table-header-cell en-photomanagement-table-header-etc" scope="col">정보수정</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="en-table-row">
+                                            <td class="en-table-cell">1</td>
+                                            <td class="en-table-cell">전라남도 무안군 해제면 신정리 41전</td>
+                                            <td class="en-table-cell">
+                                                <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/rgb/12/12975678_20220922144116_DJI_0900.JPG"></td>
+                                                <td class="en-table-cell">2022년 5월 5주차</td>
+                                                <td class="en-table-cell">2022-10-31 11:50:40</td>
+                                                <td class="en-table-cell">RGB</td>
+                                                <td class="en-table-cell">
+                                                    <button class="en-table-edit-button">수정</button>
+                                                    <button class="en-table-delete-button">삭제</button>
+                                                </td>
+                                            </tr>
+                                        <tr class="en-table-row">
+                                            <td class="en-table-cell">2</td>
+                                            <td class="en-table-cell">전라남도 무안군 해제면 신정리 41전</td>
+                                            <td class="en-table-cell">
+                                                <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/ndvi/12/12975678_0.115_20220603112101_index.JPG"></td>
+                                                <td class="en-table-cell">2022년 5월 5주차</td>
+                                                <td class="en-table-cell">2022-10-31 11:50:40</td>
+                                                <td class="en-table-cell">NDVI</td>
+                                                <td class="en-table-cell">
+                                                    <button class="en-table-edit-button">수정</button>
+                                                    <button class="en-table-delete-button">삭제</button>
+                                                </td>
+                                            </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">3</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 광산리 466-7전</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/rgb/12/12975675_20220922144209_DJI_1120.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:40</td>
+                                                    <td class="en-table-cell">RGB</td>
+                                                    <td class="en-table-cell">
+                                                        <button class="en-table-edit-button">수정</button>
+                                                        <button class="en-table-delete-button">삭제</button>
+                                                </td>
+                                            </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">4</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 광산리 466-7전</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/ndvi/12/12975675_-0.027_20220603112812_index.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell">NDVI</td>
+                                                    <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">5</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 유월리 380-3창</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/rgb/12/12975602_20220922145007_DJI_2970.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell">RGB</td>
+                                                    <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">6</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 유월리 380-3창</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/ndvi/12/12975602_0.039_20220603132004_index.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell">NDVI</td>
+                                                    <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">7</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 유월리 237답</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/rgb/12/12975136_20220922144843_DJI_2660.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell">RGB</td>
+                                                    <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">8</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 유월리 237답</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/ndvi/12/12975136_-0.002_20220603130929_index.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell">NDVI</td>
+                                                    <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell">9</td>
+                                                <td class="en-table-cell">전라남도 무안군 해제면 유월리 233-34전</td>
+                                                <td class="en-table-cell">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/rgb/12/12975135_20220922144831_DJI_2610.JPG"></td>
+                                                    <td class="en-table-cell">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell">RGB</td>
+                                                    <td class="en-table-cell">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        <tr class="en-table-row">
+                                                <td class="en-table-cell-disable">10</td>
+                                                <td class="en-table-cell-disable">전라남도 무안군 해제면 유월리 233-34전</td>
+                                                <td class="en-table-cell-disable">
+                                                    <img class="" width="96" height="65" src="https://file.farmmap.kr/upload/2022/muan/ndvi/12/12975135_-0.059_20220603130811_index.JPG"></td>
+                                                    <td class="en-table-cell-disable">2022년 5월 5주차</td>
+                                                    <td class="en-table-cell-disable">2022-10-31 11:50:39</td>
+                                                    <td class="en-table-cell-disable">NDVI</td>
+                                                    <td class="en-table-cell-disable">
+                                                            <button class="en-table-edit-button">수정</button>
+                                                            <button class="en-table-delete-button">삭제</button>
+                                                    </td>
+                                                </tr>
+                                        </tbody>
+                                </table>
+                                    <div class="en-bottom-container">
+                                    <div class="row">
+                                    <div class="col-2">
+                                </div>
+                                    <div class="col-8">
+                                    <nav aria-label="pagination">
+                                    <ul class="pagination pagination-lg justify-content-start justify-content-center">
+                                    <li class="page-item disabled">
+                                    <a class="page-link disabled" aria-disabled="true" aria-label="Go to first page" tabindex="-1" disabled="">
+                                    <img src="img/btn10Prev.png" alt="">
+                                </a>
+                                </li>
+                                    <li class="page-item disabled">
+                                <a class="page-link disabled" aria-disabled="true" aria-label="Go to previous page" tabindex="-1" disabled="">
+                                        <img src="img/btnPrev.png" alt="">
+                                </a>
+                                </li>
+                                    <li class="page-item active" aria-current="page">
+                                    <span class="page-link">1</span>
+                                </li>
+                                    <li class="page-item">
+                                    <a class="page-link" aria-label="Go to page 2">2</a>
+                                </li>
+                                    <li class="page-item">
+                                    <a class="page-link" aria-label="Go to page 3">3</a>
+                                </li>
+                                    <li class="page-item">
+                                    <a class="page-link" aria-label="Go to page 4">4</a>
+                                </li>
+                                    <li class="page-item disabled">
+                                    <a class="page-link disabled" aria-disabled="true" tabindex="-1" disabled="" role="separator">…</a>
+                                </li>
+                                    <li class="page-item">
+                                    <a class="page-link" aria-label="Go to next page" aria-disabled="false">
+                                    <img src="img/btnNext.png" alt="">
+                                </a>
+                                </li>
+                                    <li class="page-item">
+                                    <a class="page-link" aria-label="Go to last page" aria-disabled="false">
+                                    <img src="img/btn10Next.png" alt="">
+                                </a>
+                            </li>
+                            </ul>
+                            </nav>
+                            </div>
+                            </div>
+                            </div>
+                         </div>
+                      </div>
+                </div>
+            </div>
+                <link
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                        crossorigin="anonymous"
+                    />
+
+                    <script
+                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                        crossorigin="anonymous"
+                    ></script>
+</body>
+</html>
