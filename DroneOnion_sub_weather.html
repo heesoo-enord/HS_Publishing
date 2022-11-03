@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>주산지 기상정보</title>
+        </head>
+        <style>
+            * {
+                font-family: "Nanum Gothic", sans-serif;
+            }
+
+            /* 헤더 */
+
+            .header {
+                height: 100px;
+                border-right: 1px solid #c2c2c2;
+            }
+
+            .header-logo-image {
+                height: 46px;
+                left: 27px;
+                position: absolute;
+                top: 17px;
+                width: 39px;
+            }
+
+            .header-box {
+                margin-top: 15px;
+                margin-left: 80px;
+                line-height: 0.1rem;
+            }
+
+            .header-title1 {
+                color: black;
+                font-size: 20px;
+                line-height: 24px;
+                font-weight: bold;
+            }
+
+            .header-title2 {
+                color: black;
+                font-size: 19px;
+            }
+
+            /* 사이드바 */
+
+            .sidebar {
+                height: 860px;
+                border-right: 1px solid #c2c2c2;
+                width: 400px;
+            }
+
+            /* .active {
+                background: #ffeccf;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+            } */
+
+            .nav-link {
+                color: #ce7d00 !important;
+                font-size: 18px;
+                line-height: 25px;
+                opacity: 0.5;
+            }
+
+            .menu-text {
+                color: #a5a5a5;
+                font-weight: bold;
+                margin-left: 20px;
+            }
+
+            .top-menu {
+                justify-items: center;
+                background-color: #ec994b;
+                height: 4rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                box-shadow: 0 2px 2px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.14),
+                    0 3px 1px -2px rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.12),
+                    0 1px 5px 0 rgba(var(--cui-elevation-base-color, 60, 75, 100), 0.2);
+            }
+
+            .nav-icon {
+                color: #fff;
+                margin-left: 10px;
+                font-size: 1.25rem;
+                height: 1.25rem;
+                text-align: center;
+                transition: inherit;
+                object-fit: contain;
+                margin-right: 1rem;
+            }
+
+            .header-profile-icon {
+                margin-right: 11px;
+            }
+
+            .header-user {
+                align-items: center;
+                color: #fff;
+                display: flex;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                background-color: transparent;
+                border: 0;
+                border-radius: 0.25rem;
+                margin-left: 1200px;
+            }
+
+            .header-logout-icon {
+                vertical-align: middle;
+                height: 24px;
+                margin-right: 7px;
+                margin-top: 3px;
+                width: 26px;
+            }
+
+            .btn.header-logout {
+                background-color: #fff;
+                display: flex;
+                height: 44px;
+                margin-right: 32px;
+                margin-top: 10px;
+                width: 140px;
+                border-radius: 8px;
+                line-height: 22px;
+                font-size: 16px;
+            }
+
+            .header-logout-label {
+                align-items: center;
+                color: #ce7d00;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-top: 6px;
+            }
+
+            /* 지도 */
+
+            #map {
+                height: 850px;
+                width: 100%;
+            }
+
+            #map-button1 {
+                font-size: 17px;
+                position: absolute;
+                top: 20%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #map-button2 {
+                font-size: 17px;
+                position: absolute;
+                top: 25%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            #map-button3 {
+                font-size: 17px;
+                position: absolute;
+                top: 30%;
+                left: 330px;
+                z-index: 10;
+                background-color: #ec994b;
+                color: #fff;
+                border: 0;
+                width: 70px;
+            }
+
+            .map-form-control {
+                z-index: 10;
+                position: absolute;
+                top: 100px;
+                left: 380px;
+                width: 500px;
+                background-color: #ec994b;
+                color: #fff;
+            }
+
+            /* content */
+
+            .en-defaultlayout-appcontent {
+                background-color: #f9f9f9;
+            }
+
+            .en-table-top-container {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .en-table-total-count-label {
+                color: rgba(0,0,0,.8);
+                font-size: 18px;
+                line-height: 25px;
+            }
+
+            .en-table-total-count {
+                color: #ce7d00;
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 41px;
+            }
+
+            .en-table-search-container {
+                display: flex;
+            }
+
+            .en-table-search-icon {
+                background-color: #fff;
+                text-align: center;
+            }
+
+            .en-table-search-button {
+                background: #ec994b!important;
+                border-radius: 8px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 44px;
+                line-height: 22px;
+                margin-left: 9px;
+                text-align: center;
+                width: 120px!important;
+                border: 0!important;
+            }
+
+            .en-table-container {
+                margin: 0;
+                max-width: 100%;
+                padding: 0px 56px 97px;
+            }
+
+            .en-table-header {
+                color: #000!important;
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 25px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .table {
+                background-color: #fff;
+                margin-top: 25px;
+                border-radius: 14px 14px 14px 14px;
+            }
+
+            .en-table-row {
+                color: #000!important;
+                height: 56px;
+                line-height: 22px;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .en-table-edit-button {
+                background-color: #ec994b;
+                border-radius: 8px;
+                border-width: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 40px;
+                line-height: 22px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                width: 65px;
+            }
+
+            .en-table-delete-button {
+                background-color: #ff4646;
+                border-radius: 8px;
+                border-width: 0;
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 40px;
+                line-height: 22px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                width: 65px;
+            }
+
+            .en-bottom-container {
+                margin-top: 20px;
+            }
+
+            .page-item.disabled .page-link {
+                background: none;
+            }
+
+            .page-link {
+                background: transparent;
+                color: #202020!important;
+                border-width: 1px;
+                display: table-cell!important;
+                font-size: 18px;
+                height: 50px;
+                margin: 0 5px!important;
+                padding: 0!important;
+                text-align: center;
+                vertical-align: middle;
+                width: 50px;
+                border-radius: 14px;
+                font-weight: thin;
+                line-height: 25px;
+            }
+
+            .page-link {
+                background-color: #ec994b;
+            }
+
+            .en-table-regi-button {
+                background: #ec994b!important;
+                border: 0!important;
+                border-radius: 8px;
+                box-shadow: 0 4px 4px rgb(0 0 0 / 4%);
+                color: #fff;
+                font-size: 16px;
+                font-weight: bold;
+                height: 44px;
+                line-height: 22px;
+                width: 180px;
+            }
+
+            .page-item.active .page-link {
+                background-color: #ec994b!important;
+                border-width: 0;
+                box-shadow: 0 7px 16px rgb(0 0 0 / 14%);
+                color: #fff!important;
+                font-size: 18px!important;
+                margin: 0 5px;
+            }
+
+            .en-search-label {
+                align-items: center;
+                color: #202020;
+                display: flex;                
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-left: 25px;
+                margin-right: 8px;
+            }
+            
+            .form-select {
+                display: block;
+                width: 100px;
+                padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+                -moz-padding-start: calc(0.75rem - 3px);
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #212529;
+            }
+
+            .form-control, .en-search-user-input {
+                width: 124px!important;
+                height: 44px!important;
+            }
+
+            .en-weather-top-box {
+                display: flex;
+                height: 40px;
+                justify-content: space-between;
+                margin: 37px 27px 0;
+            }
+
+            .en-weather-top-right-box {
+                display: flex;
+            }
+
+            .en-weather-chart-box {
+                display: flex;
+                height: 330px;
+                margin: 33px 27px;
+            }
+
+            .en-weather-chart-subbox {
+                background: #fff;
+                border-radius: 14px;
+                box-shadow: 0 4px 10px rgb(0 0 0 / 4%);
+                height: 100%;
+                margin: 8px 20px 0;
+                width: 50%;
+            }
+
+            .en-price-chart-box {
+                display: flex;
+                height: 330px;
+                margin: 33px 27px;
+            }
+
+            </style>
+            <body>
+                <div class="row g-0">
+                    <div class="col-md-2 header">
+                        <div class="col header-box">
+                            <img class="header-logo-image" src="img/onion.png" />
+                            <p class="header-title1">스마트 드론 <br /></p>
+                            <p class="header-title2">생육 데이터 서비스</p>
+                        </div>
+                    </div>
+                    <div class="col-md-10 top-menu">
+                        <button type="button" class="header-toggler px-md-0 me-md-3 header-user">
+                            <img class="header-profile-icon" src="img/icon_user2.png" />홍길동 님 반갑습니다.
+                        </button>
+                        <button class="btn header-logout" type="button">
+                            <img class="header-logout-icon" src="img/icon_logout.png" />
+                            <div class="header-logout-label">로그아웃</div>
+                        </button>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-md-2 sidebar">
+                        <p class="menu-text">메뉴</p>
+                        <ul class="nav flex-column sidebar-menu">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="DroneOnion_sub_new1-1.html">
+                                    <img class="nav-icon" src="img/icon_dashboard 2.png" width="26" height="23" />
+                                    <span data-feather="file" class="align-text-bottom"></span>
+                                    대시보드
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_farmland.html">
+                                    <img class="nav-icon" src="img/icon_farm2.png" width="26" height="23" />
+                                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                                    농지 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_userManagement.html">
+                                    <img class="nav-icon" src="img/icon_user2.png" width="26" height="23" />
+                                    <span data-feather="users" class="align-text-bottom"></span>
+                                    사용자 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_userLog.html">
+                                    <img class="nav-icon" src="img/icon_status2.png" width="26" height="23" />
+                                    <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+                                    사용자 이용 현황
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_pests.html">
+                                    <img class="nav-icon" src="img/icon_bug2.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    병해충 목록
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_photoManagement.html">
+                                    <img class="nav-icon" src="img/icon_piclist2.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    사진 관리
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="DroneOnion_sub_weather.html">
+                                    <img class="nav-icon" src="img/icon_weather.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    주산지 기상정보
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img class="nav-icon" src="img/icon_market.png" width="26" height="23" />
+                                    <span data-feather="layers" class="align-text-bottom"></span>
+                                    시세 정보
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-10 en-defaultlayout-appcontent">
+                        <div class="en-appcontent-container">
+                            <div class="en-weather-container">
+                                <div class="en-weather-top-box">
+                                <div>
+                                    <span class="en-weather-subtitle">출처 : 기상청</span>
+                                </div>
+                                <div class="en-weather-top-right-box">
+                                    <span class="en-search-label">검색기간</span>
+                                    <div class="dropdown picker date-picker en-pests-search-date">
+                                        <div class="input-group picker-input-group" aria-expanded="false">
+                                            <input class="form-control" type="text" autocomplete="off" placeholder="시작일">
+                                            <span class="input-group-text">
+                                                <span class="picker-input-group-icon date-picker-arrow-icon"></span>
+                                            </span>
+                                            <input class="form-control" type="text" autocomplete="off" placeholder="종료일">
+                                            <span class="input-group-text">
+                                                <span class="picker-input-group-indicator">
+                                                    <span class="picker-input-group-icon date-picker-input-icon"></span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="dropdown-menu" role="menu" aria-hidden="true">
+                                            <div class="date-picker-body">
+                                                <div class="calendars date-picker-calendars">
+                                                    <div class="calendar days">
+                                                        <div class="calendar-nav">
+                                                            <div class="calendar-nav-prev">
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-double-prev"></span>
+                                                                </button>
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-prev"></span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="calendar-nav-date" style="display: flex; justify-content: center;">
+                                                                <button class="btn btn-transparent btn-sm" type="button">11월</button>
+                                                                <button class="btn btn-transparent btn-sm" type="button" style="order: -1;">2022년</button>
+                                                            </div>
+                                                            <div class="calendar-nav-next">
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-next"></span>
+                                                                </button>
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-double-next"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">월</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">화</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">수</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">목</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">금</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">토</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">일</div>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="calendar-cell previous last" title="2022. 10. 31.">
+                                                                        <div class="calendar-cell-inner">31</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 1.">
+                                                                        <div class="calendar-cell-inner">1</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 2.">
+                                                                        <div class="calendar-cell-inner">2</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell today current" title="2022. 11. 3.">
+                                                                        <div class="calendar-cell-inner">3</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 4.">
+                                                                        <div class="calendar-cell-inner">4</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 5.">
+                                                                        <div class="calendar-cell-inner">5</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 6.">
+                                                                        <div class="calendar-cell-inner">6</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="calendar-cell current" title="2022. 11. 7.">
+                                                                        <div class="calendar-cell-inner">7</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 8.">
+                                                                        <div class="calendar-cell-inner">8</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 9.">
+                                                                        <div class="calendar-cell-inner">9</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 10.">
+                                                                        <div class="calendar-cell-inner">10</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 11.">
+                                                                        <div class="calendar-cell-inner">11</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 12.">
+                                                                        <div class="calendar-cell-inner">12</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 13.">
+                                                                        <div class="calendar-cell-inner">13</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="calendar-cell current" title="2022. 11. 14.">
+                                                                        <div class="calendar-cell-inner">14</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 15.">
+                                                                        <div class="calendar-cell-inner">15</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 16.">
+                                                                        <div class="calendar-cell-inner">16</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 17.">
+                                                                        <div class="calendar-cell-inner">17</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 18.">
+                                                                        <div class="calendar-cell-inner">18</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 19.">
+                                                                        <div class="calendar-cell-inner">19</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 20.">
+                                                                        <div class="calendar-cell-inner">20</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="calendar-cell current" title="2022. 11. 21.">
+                                                                        <div class="calendar-cell-inner">21</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 22.">
+                                                                        <div class="calendar-cell-inner">22</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 23.">
+                                                                        <div class="calendar-cell-inner">23</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 24.">
+                                                                        <div class="calendar-cell-inner">24</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 25.">
+                                                                        <div class="calendar-cell-inner">25</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 26.">
+                                                                        <div class="calendar-cell-inner">26</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 27.">
+                                                                        <div class="calendar-cell-inner">27</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="calendar-cell current" title="2022. 11. 28.">
+                                                                        <div class="calendar-cell-inner">28</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 11. 29.">
+                                                                        <div class="calendar-cell-inner">29</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current last" title="2022. 11. 30.">
+                                                                        <div class="calendar-cell-inner">30</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 1.">
+                                                                        <div class="calendar-cell-inner">1</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 2.">
+                                                                        <div class="calendar-cell-inner">2</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 3.">
+                                                                        <div class="calendar-cell-inner">3</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 4.">
+                                                                        <div class="calendar-cell-inner">4</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="calendar-cell next" title="2022. 12. 5.">
+                                                                        <div class="calendar-cell-inner">5</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 6.">
+                                                                        <div class="calendar-cell-inner">6</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 7.">
+                                                                        <div class="calendar-cell-inner">7</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 8.">
+                                                                        <div class="calendar-cell-inner">8</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 9.">
+                                                                        <div class="calendar-cell-inner">9</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 10.">
+                                                                        <div class="calendar-cell-inner">10</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell next" title="2022. 12. 11.">
+                                                                        <div class="calendar-cell-inner">11</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="calendar days">
+                                                        <div class="calendar-nav">
+                                                            <div class="calendar-nav-prev">
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-double-prev"></span>
+                                                                </button>
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-prev"></span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="calendar-nav-date" style="display: flex; justify-content: center;">
+                                                                <button class="btn btn-transparent btn-sm" type="button">12월</button>
+                                                                <button class="btn btn-transparent btn-sm" type="button" style="order: -1;">2022년</button>
+                                                            </div>
+                                                            <div class="calendar-nav-next">
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-next"></span>
+                                                                </button>
+                                                                <button class="btn btn-transparent btn-sm" type="button">
+                                                                    <span class="calendar-nav-icon calendar-nav-icon-double-next"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">월</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">화</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">수</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">목</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">금</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">토</div>
+                                                                    </th>
+                                                                    <th class="calendar-cell">
+                                                                        <div class="calendar-header-cell-inner">일</div>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="calendar-cell previous" title="2022. 11. 28.">
+                                                                        <div class="calendar-cell-inner">28</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell previous" title="2022. 11. 29.">
+                                                                        <div class="calendar-cell-inner">29</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell previous last" title="2022. 11. 30.">
+                                                                        <div class="calendar-cell-inner">30</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 1.">
+                                                                        <div class="calendar-cell-inner">1</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 2.">
+                                                                        <div class="calendar-cell-inner">2</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 3.">
+                                                                        <div class="calendar-cell-inner">3</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 4.">
+                                                                        <div class="calendar-cell-inner">4</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="calendar-cell current" title="2022. 12. 5.">
+                                                                        <div class="calendar-cell-inner">5</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 6.">
+                                                                        <div class="calendar-cell-inner">6</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 7.">
+                                                                        <div class="calendar-cell-inner">7</div>
+                                                                    </td>
+                                                                    <td class="calendar-cell current" title="2022. 12. 8.">
+                                                                        <div class="calendar-cell-inner">8</div>
+                                                                    </td>
+                                                                        <td class="calendar-cell current" title="2022. 12. 9.">
+                                                                            <div class="calendar-cell-inner">9</div>
+                                                                        </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 10.">
+                                                                                <div class="calendar-cell-inner">10</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 11.">
+                                                                                <div class="calendar-cell-inner">11</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="calendar-cell current" title="2022. 12. 12.">
+                                                                                <div class="calendar-cell-inner">12</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 13.">
+                                                                                <div class="calendar-cell-inner">13</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 14.">
+                                                                                <div class="calendar-cell-inner">14</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 15.">
+                                                                                <div class="calendar-cell-inner">15</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 16.">
+                                                                                <div class="calendar-cell-inner">16</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 17.">
+                                                                                <div class="calendar-cell-inner">17</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 18.">
+                                                                                <div class="calendar-cell-inner">18</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="calendar-cell current" title="2022. 12. 19.">
+                                                                                <div class="calendar-cell-inner">19</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 20.">
+                                                                                <div class="calendar-cell-inner">20</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 21.">
+                                                                                <div class="calendar-cell-inner">21</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 22.">
+                                                                                <div class="calendar-cell-inner">22</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 23.">
+                                                                                <div class="calendar-cell-inner">23</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 24.">
+                                                                                <div class="calendar-cell-inner">24</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 25.">
+                                                                                <div class="calendar-cell-inner">25</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="calendar-cell current" title="2022. 12. 26.">
+                                                                                <div class="calendar-cell-inner">26</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 27.">
+                                                                                <div class="calendar-cell-inner">27</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 28.">
+                                                                                <div class="calendar-cell-inner">28</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 29.">
+                                                                                <div class="calendar-cell-inner">29</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current" title="2022. 12. 30.">
+                                                                                <div class="calendar-cell-inner">30</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell current last" title="2022. 12. 31.">
+                                                                                <div class="calendar-cell-inner">31</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 1.">
+                                                                                <div class="calendar-cell-inner">1</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="calendar-cell next" title="2023. 1. 2.">
+                                                                                <div class="calendar-cell-inner">2</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 3.">
+                                                                                <div class="calendar-cell-inner">3</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 4.">
+                                                                                <div class="calendar-cell-inner">4</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 5.">
+                                                                                <div class="calendar-cell-inner">5</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 6.">
+                                                                                <div class="calendar-cell-inner">6</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 7.">
+                                                                                <div class="calendar-cell-inner">7</div>
+                                                                            </td>
+                                                                            <td class="calendar-cell next" title="2023. 1. 8.">
+                                                                                <div class="calendar-cell-inner">8</div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary en-table-search-button en-weather-search-button" type="button">조 회</button>
+                                        </div>
+                                    </div>
+                                    <div class="en-weather-chart-box">
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">기온</div>
+                                            <div class="en-weather-chart">
+                                                <canvas id="myChart" width="725" height="231"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">토양수분 그래프</div>
+                                            <div class="en-weather-chart">
+                                                <canvas role="img" height="231" width="725" style="display: block; box-sizing: border-box; height: 231px; width: 725px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="en-price-chart-box">
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">풍속</div>
+                                            <div class="en-weather-chart">
+                                                <canvas role="img" height="231" width="725" style="display: block; box-sizing: border-box; height: 231px; width: 725px;"></canvas>
+                                            </div>
+                                        </div>
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">강수</div>
+                                            <div class="en-weather-chart">
+                                                <canvas role="img" height="231" width="725" style="display: block; box-sizing: border-box; height: 231px; width: 725px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                         </div>
+                      </div>
+                </div>
+            </div>
+            
+            <script>
+                const labels = [
+                  'January',
+                  'February',
+                  'March',
+                  'April',
+                  'May',
+                  'June',
+                ];
+              
+                const data = {
+                  labels: labels,
+                  datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45],
+                  }]
+                };
+              
+                const config = {
+                  type: 'line',
+                  data: data,
+                  options: {}
+                };
+              </script>
+
+                <script>
+                    const myChart = new Chart(
+                      document.getElementById('myChart'),
+                      config
+                    );
+                  </script>
+
+                <link
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+                        crossorigin="anonymous"
+                    />
+
+                    <script
+                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                        crossorigin="anonymous"
+                    ></script>
+</body>
+</html>
