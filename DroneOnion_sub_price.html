@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
-        <title>사용자 관리</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>시세 정보</title>
         </head>
         <style>
             * {
@@ -353,8 +354,67 @@
                 margin: 0 5px;
             }
 
-            .table thead {
-                border-bottom: 1px solid grey;
+            .en-search-label {
+                align-items: center;
+                color: #202020;
+                display: flex;                
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 22px;
+                margin-left: 25px;
+                margin-right: 8px;
+            }
+            
+            .form-select {
+                display: block;
+                width: 100px;
+                padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+                -moz-padding-start: calc(0.75rem - 3px);
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #212529;
+            }
+
+            .form-control, .en-search-user-input {
+                width: 124px!important;
+                height: 44px!important;
+            }
+
+            .en-weather-top-box {
+                display: flex;
+                height: 40px;
+                justify-content: space-between;
+                margin: 37px 27px 0;
+            }
+
+            .en-weather-top-right-box {
+                display: flex;
+            }
+
+            .en-weather-chart-box {
+                display: flex;
+                height: 330px;
+                margin: 33px 27px;
+            }
+
+            .en-weather-chart-subbox {
+                background: #fff;
+                border-radius: 14px;
+                box-shadow: 0 4px 10px rgb(0 0 0 / 4%);
+                height: 100%;
+                margin: 8px 10px 0;
+                width: 50%;
+            }
+
+            .en-price-chart-box {
+                display: flex;
+                height: 330px;
+                margin: 33px 27px;
+            }
+
+            .en-price-top-right-box {
+                display: flex;
             }
 
             </style>
@@ -431,7 +491,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="DroneOnion_sub_price.html">
+                                <a class="nav-link" href="#">
                                     <img class="nav-icon" src="img/icon_market.png" width="26" height="23" />
                                     <span data-feather="layers" class="align-text-bottom"></span>
                                     시세 정보
@@ -442,189 +502,60 @@
 
                     <div class="col-md-10 en-defaultlayout-appcontent">
                         <div class="en-appcontent-container">
-                            <div class="en-default-container">
-                                <div class="en-table-container">
-                                    <div class="en-table-top-container">
-                                        <span>
-                                        <span class="en-table-total-count-label">총</span>
-                                        <span class="en-table-total-count"> 60 </span>
-                                        <span class="en-table-total-count-label">명</span>
-                                    </span>
-                                    <span class="en-table-search-container">
-                                        <form class="">
-                                            <div class="input-group">
-                                            <span class="input-group-text en-table-search-icon">
-                                                <img class="" src="img/search.png"></span>
-                                                <input class="form-control en-table-search-box" id="searchWord" type="text" placeholder="사용자 입력">
-                                            </div>
-                                            </form>
-                                            <button class="btn btn-primary en-table-search-button" type="button">검 색</button>
-                                        </span>
+                            <div class="en-weather-container">
+                                <div class="en-weather-top-box">
+                                <div>
+                                    <span class="en-weather-subtitle">출처 : AT유통공사</span>
+                                </div>
+                                <div class="en-price-top-right-box">
+                                    <select class="form-select en-search-user-input en-weather-search-onion-type">
+                                    <option value="1">양파</option>
+                                    <option value="2">햇양파</option>
+                                </select>                                
+                                    <button class="btn btn-primary en-table-search-button en-weather-search-button" type="button">조 회</button>
                                     </div>
-                                    <table class="table table-hover">                                  
-                                        <tr class="en-table-header">
-                                            <th class="en-table-header-cell en-usermanagement-table-header-index" scope="col">번호</th>
-                                            <th class="en-table-header-cell en-usermanagement-table-header_name" scope="col">사용자명</th>
-                                            <th class="en-table-header-cell en-usermanagement-table-header-phone" scope="col">전화번호</th>
-                                            <th class="en-table-header-cell en-usermanagement-table-header-address" scope="col">자택 주소</th>
-                                            <th class="en-table-header-cell en-usermanagement-table-header-etc" scope="col">정보수정</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">1</td>
-                                            <td class="en-table-cell">박주안</td>
-                                            <td class="en-table-cell">010-6287-7775</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 배나무길 50-19</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">2</td>
-                                            <td class="en-table-cell">서민</td>
-                                            <td class="en-table-cell">010-5153-6265</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 봉대로 446</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">3</td>
-                                            <td class="en-table-cell">백세호</td>
-                                            <td class="en-table-cell">010-8767-6197</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 회안길 27</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">4</td>
-                                            <td class="en-table-cell">박진석</td>
-                                            <td class="en-table-cell">010-5354-5138</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 용산길 58-16</td>
-                                            <td class="en-table-cell"><button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">5</td>
-                                            <td class="en-table-cell">김종광</td>
-                                            <td class="en-table-cell">010-6485-8244</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 해제지도로 588-14</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">6</td>
-                                            <td class="en-table-cell">김용중</td>
-                                            <td class="en-table-cell">010-4610-4863</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 사야길 61-1</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">7</td>
-                                            <td class="en-table-cell">김영식</td>
-                                            <td class="en-table-cell">010-4595-7043</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 기룡길 43</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">8</td>
-                                            <td class="en-table-cell">홍희헌</td>
-                                            <td class="en-table-cell">010-4119-4233</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 현해로 1363</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell">9</td>
-                                            <td class="en-table-cell">홍석호</td>
-                                            <td class="en-table-cell">010-2605-7359</td>
-                                            <td class="en-table-cell">전라남도 무안군 해제면 응양길 14</td>
-                                            <td class="en-table-cell">
-                                                <button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                        <tr class="en-table-row">
-                                            <td class="en-table-cell-disable">10</td>
-                                            <td class="en-table-cell-disable">박계범</td>
-                                            <td class="en-table-cell-disable">010-4010-1004</td>
-                                            <td class="en-table-cell-disable">전라남도 무안군 해제면 배나무길 104</td>
-                                            <td class="en-table-cell-disable"><button class="en-table-edit-button">수정</button>
-                                                <button class="en-table-delete-button">삭제</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                        </table>
-                                            <div class="en-bottom-container">
-                                                <div class="row">
-                                                <div class="col-2">
+                              </div>
+                                    <div class="en-weather-chart-box">
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">월간 가격 / 양파, 등급 : <b>상품</b>, 단위 : 15kg</div>
+                                            <div class="en-weather-chart">
+                                                <canvas id="myChart" width="725" height="231"></canvas>
                                             </div>
-                                                <div class="col-8">
-                                                <nav aria-label="pagination">
-                                                <ul class="pagination pagination-lg justify-content-start justify-content-center">
-                                                <li class="page-item disabled">
-                                                <a class="page-link disabled" aria-disabled="true" aria-label="Go to first page" tabindex="-1" disabled="">
-                                                <img src="img/btn10Prev.png" alt="">
-                                            </a>
-                                            </li>
-                                                <li class="page-item disabled">
-                                                <a class="page-link disabled" aria-disabled="true" aria-label="Go to previous page" tabindex="-1" disabled="">
-                                                <img src="img/btnPrev.png" alt="">
-                                            </a>
-                                            </li>
-                                                <li class="page-item active" aria-current="page">
-                                                <span class="page-link">1</span>
-                                            </li>
-                                                <li class="page-item">
-                                                <a class="page-link" aria-label="Go to page 2">2</a>
-                                            </li>
-                                                <li class="page-item">
-                                                <a class="page-link" aria-label="Go to page 3">3</a>
-                                            </li>
-                                                <li class="page-item">
-                                                <a class="page-link" aria-label="Go to page 4">4</a>
-                                            </li>
-                                                <li class="page-item disabled">
-                                                <a class="page-link disabled" aria-disabled="true" tabindex="-1" disabled="" role="separator">…</a>
-                                            </li>
-                                                <li class="page-item">
-                                                <a class="page-link" aria-label="Go to next page" aria-disabled="false">
-                                                <img src="img/btnNext.png" alt="">
-                                            </a>
-                                            </li>
-                                                <li class="page-item">
-                                                <a class="page-link" aria-label="Go to last page" aria-disabled="false">
-                                                <img src="img/btn10Next.png" alt="">
-                                            </a>
-                                            </li>
-                                            </ul>
-                                            </nav>
+                                        </div>
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">연간 가격 / 양파, 등급 : <b>상품</b>, 단위 : 15kg</div>
+                                            <div class="en-weather-chart">
+                                                <canvas id="myChart2" height="231" width="725"></canvas>
                                             </div>
-                                                <div class="col-2" style="text-align: right;">
-                                                <button class="btn btn-primary en-table-regi-button" type="button">농지 등록</button>
+                                        </div>
+                                    </div>
+                                    <div class="en-price-chart-box">
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">월간 가격 / 양파, 등급 : <b>중품</b>, 단위 : 15kg</div>
+                                            <div class="en-weather-chart">
+                                                <canvas id="myChart3" height="231" width="725"></canvas>
                                             </div>
-                                         </div>
+                                        </div>
+                                        <div class="en-weather-chart-subbox">
+                                            <div class="en-weather-chart-label">연간 가격 / 양파, 등급 : <b>중품</b>, 단위 : 15kg</div>
+                                            <div class="en-weather-chart">
+                                                <canvas id="myChart4" height="231" width="725"></canvas>
+                                            </div>
+                                           </div>
+                                          </div>
+                                        </div>
+                                       </div>
                                      </div>
                                    </div>
                                  </div>
+                                </div>
                               </div>
-                            </div>
+                             </div>
+                          </div>           
+            
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+                <script src="js/price.js"></script>
+
                 <link
                         href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
                         rel="stylesheet"
